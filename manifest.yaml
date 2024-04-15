@@ -1,0 +1,32 @@
+name: github.com/rgst-io/stencil-golang
+postRunCommand:
+  - name: mise install
+    command: mise install
+  - name: mise run fmt
+    command: mise run fmt
+arguments:
+  org:
+    description: The Github organization to use for the project
+    schema:
+      type: string
+
+  license:
+    default: Proprietary
+    description: |-
+      License to use for the project
+    schema:
+      type: string
+      enum:
+        - GPL-3.0
+        - Proprietary
+
+  commands:
+    description: |-
+      List of distinct entrypoints to create in this Golang
+      application. If unset, defaults to the name of the project. When
+      adding to this list, ensure that the project name is added if
+      desired.
+    schema:
+      type: array
+      items:
+        type: string
