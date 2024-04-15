@@ -17,6 +17,7 @@ arguments:
     schema:
       type: string
       enum:
+        - AGPL-3.0
         - GPL-3.0
         - Proprietary
 
