@@ -4,7 +4,7 @@
 project_name: {{ .Config.Name }}
 before:
   hooks:
-    - go mod download
+    - go mod tidy
 builds:
   - main: ./cmd/{{ "{{ .ProjectName }}" }}
     flags:
@@ -66,7 +66,32 @@ snapshot:
   name_template: "{{ "{{ incpatch .Version }}" }}-next"
 changelog:
   sort: asc
+  use: git
   filters:
     exclude:
-      - "^docs:"
       - "^test:"
+      - "^chore:"
+      - "merge conflict"
+      - Merge pull request
+      - Merge remote-tracking branch
+      - Merge branch
+      - go mod tidy
+  groups:
+    - title: Dependency updates
+      regexp: "^.*(feat|chore|fix)\\(deps\\)*:+.*$"
+      order: 300
+    - title: "New Features"
+      regexp: "^.*feat[(\\w)]*:+.*$"
+      order: 100
+    - title: "Bug fixes"
+      regexp: "^.*fix[(\\w)]*:+.*$"
+      order: 200
+    - title: "Documentation updates"
+      regexp: "^.*docs[(\\w)]*:+.*$"
+      order: 400
+    - title: Other work
+      order: 9999
+
+release:
+  footer: |-
+    **Full Changelog**: https://github.com/{{ $org }}/{{ .Config.Name }}/compare/{{ "{{ .PreviousTag }}" }}...{{ "{{ .Tag }}" }}
