@@ -1,0 +1,14 @@
+# Default versions of tools, to update these, set [tools.override]
+[tools]
+golang = "1.22"
+shfmt = "3"
+golangci-lint = "1.56"
+goreleaser = "latest"
+bun = "latest"
+"go:gotest.tools/gotestsum" = "v1.11.0"
+"go:golang.org/x/tools/cmd/goimports" = "latest"
+
+[tasks.fmt]
+alias = "format"
+description = "Format code"
+run = ["shfmt -w -i 2 -ci -sr ."]
