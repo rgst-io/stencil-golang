@@ -29,7 +29,7 @@ jobs:
         run: |
           gotestsum -- -coverprofile=cover.out ./...
       - name: Upload test coverage
-        uses: codecov/codecov-action@v4.3.0
+        uses: codecov/codecov-action@v4
         with:
           token: {{ "${{" }} secrets.CODECOV_TOKEN {{ "}}" }}
           files: ./cover.out
@@ -50,7 +50,7 @@ jobs:
           echo "version=$(mise current golangci-lint)" >> "$GITHUB_OUTPUT"
         id: golangci_lint
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@v4
+        uses: golangci/golangci-lint-action@v6
         with:
           version: v{{ "${{" }} steps.golangci_lint.outputs.version {{ "}}" }}
           args: --timeout=30m
