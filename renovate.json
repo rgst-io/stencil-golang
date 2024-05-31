@@ -6,7 +6,7 @@
       "description": "Update tool versions in .mise.toml.tpl",
       "fileMatch": ["templates/.mise.toml.tpl"],
       "matchStrings": [
-        "# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?)(?: versioning=(?<versioning>[a-z-]+?))?\\s- [a-z]+: \"(?<currentValue>.+?)\"\\s"
+        "# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?)(?: versioning=(?<versioning>[a-z-]+?))?\\s- [a-z-]+: \"(?<currentValue>.+?)\"\\s"
       ]
     }
   ]

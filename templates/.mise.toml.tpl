@@ -2,7 +2,7 @@
 {{- define "defaultVers" }}
 # renovate: datasource=golang-version depName=golang
 - golang: "1.22"
-# renovate: datasource=github-releases depName=shfm packageName=mvdan/sh
+# renovate: datasource=github-releases depName=shfmt packageName=mvdan/sh
 - shfmt: "3"
 # renovate: datasource=github-releases depName=golangci-lint packageName=golangci/golangci-lint
 - golangci-lint: "1.59"
