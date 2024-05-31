@@ -20,7 +20,7 @@ jobs:
       {{- /* renovate: datasource=github-tags packageName=actions/checkout */}}
       - uses: actions/checkout@v4
       {{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
-      - uses: jdx/mise-action@v2
+      - uses: jdx/mise-action@v2.0.4
         with:
           experimental: true
         env:
@@ -45,7 +45,7 @@ jobs:
       {{- /* renovate: datasource=github-tags packageName=actions/checkout */}}
       - uses: actions/checkout@v4
       {{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
-      - uses: jdx/mise-action@v2
+      - uses: jdx/mise-action@v2.0.4
         with:
           experimental: true
         env:

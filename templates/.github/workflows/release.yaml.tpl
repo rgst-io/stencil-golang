@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 0
           fetch-tags: true
       {{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
-      - uses: jdx/mise-action@v2
+      - uses: jdx/mise-action@v2.0.4
         with:
           experimental: true
         env:
