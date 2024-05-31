@@ -1,9 +1,13 @@
 {{- /* TODO(jaredallard): Don't put this inside of this file */}}
 {{- define "defaultVers" }}
+# renovate: datasource=golang-version depName=golang
 - golang: "1.22"
+# renovate: datasource=github-releases depName=shfm packageName=mvdan/sh
 - shfmt: "3"
-- golangci-lint: "1.56"
+# renovate: datasource=github-releases depName=golangci-lint packageName=golangci/golangci-lint
+- golangci-lint: "1.59"
 - goreleaser: "latest"
+# renovate: datasource=gomod depName=gotestsum packageName=gotest.tools/gotestsum
 - "go:gotest.tools/gotestsum": "v1.11.0"
 - "go:golang.org/x/tools/cmd/goimports": "latest"
 {{- end }}
