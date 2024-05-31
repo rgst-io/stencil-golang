@@ -12,7 +12,7 @@
     {
       "customType": "regex",
       "description": "Update workflow versions in .github/workflows",
-      "fileMatch": ["^.github/workflows/[a-z-]+.yml$"],
+      "fileMatch": ["^templates/.github/workflows/[a-z-]+.yaml.tpl$"],
       "matchStrings": [
         "{{- /\\* renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?)(?: versioning=(?<versioning>[a-z-]+?))? \\*/}}\\s+(?:- )?uses: [a-z-/]+@(?<currentValue>.+?)\\s"
       ]
