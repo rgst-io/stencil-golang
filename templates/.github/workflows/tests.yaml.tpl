@@ -56,7 +56,7 @@ jobs:
         id: golangci_lint
       - name: golangci-lint
         {{- /* renovate: datasource=github-tags packageName=golangci/golangci-lint-action */}}
-        uses: golangci/golangci-lint-action@v6
+        uses: golangci/golangci-lint-action@v6.0.1
         with:
           version: v{{ "${{" }} steps.golangci_lint.outputs.version {{ "}}" }}
           args: --timeout=30m
