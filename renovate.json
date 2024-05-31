@@ -13,8 +13,9 @@
       "customType": "regex",
       "description": "Update workflow versions in .github/workflows",
       "fileMatch": ["^templates/.github/workflows/[a-z-]+.yaml.tpl$"],
+      "versioningTemplate": "docker",
       "matchStrings": [
-        "{{- /\\* renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?)(?: versioning=(?<versioning>[a-z-]+?))? \\*/}}\\s+(?:- )?uses: [a-z-/]+@(?<currentValue>.+?)\\s"
+        "{{- /\\* renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?) \\*/}}\\s+(?:- )?uses: [a-z-/]+@(?<currentValue>.+?)\\s"
       ]
     }
   ]
