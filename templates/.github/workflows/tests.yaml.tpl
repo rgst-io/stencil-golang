@@ -17,7 +17,9 @@ jobs:
     name: go test
     runs-on: ubuntu-latest
     steps:
+      {{- /* renovate: datasource=github-tags packageName=actions/checkout */}}
       - uses: actions/checkout@v4
+      {{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
       - uses: jdx/mise-action@v2
         with:
           experimental: true
@@ -29,6 +31,7 @@ jobs:
         run: |
           gotestsum -- -coverprofile=cover.out ./...
       - name: Upload test coverage
+        {{- /* renovate: datasource=github-tags packageName=codecov/codecov-action */}}
         uses: codecov/codecov-action@v4
         with:
           token: {{ "${{" }} secrets.CODECOV_TOKEN {{ "}}" }}
@@ -39,7 +42,9 @@ jobs:
     name: golangci-lint
     runs-on: ubuntu-latest
     steps:
+      {{- /* renovate: datasource=github-tags packageName=actions/checkout */}}
       - uses: actions/checkout@v4
+      {{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
       - uses: jdx/mise-action@v2
         with:
           experimental: true
@@ -50,6 +55,7 @@ jobs:
           echo "version=$(mise current golangci-lint)" >> "$GITHUB_OUTPUT"
         id: golangci_lint
       - name: golangci-lint
+        {{- /* renovate: datasource=github-tags packageName=golangci/golangci-lint-action */}}
         uses: golangci/golangci-lint-action@v6
         with:
           version: v{{ "${{" }} steps.golangci_lint.outputs.version {{ "}}" }}

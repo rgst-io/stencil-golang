@@ -8,6 +8,14 @@
       "matchStrings": [
         "# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?)(?: versioning=(?<versioning>[a-z-]+?))?\\s- [a-z-]+: \"(?<currentValue>.+?)\"\\s"
       ]
+    },
+    {
+      "customType": "regex",
+      "description": "Update workflow versions in .github/workflows",
+      "fileMatch": ["github/workflows/*.yml"],
+      "matchStrings": [
+        "{{- /\\* renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?)(?: versioning=(?<versioning>[a-z-]+?))? \\*/}}\\s+(?:- )?uses: [a-z-/]+@(?<currentValue>.+?)\\s"
+      ]
     }
   ]
 }
