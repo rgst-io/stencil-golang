@@ -1,13 +1,24 @@
 # yaml-language-server: $schema=https://goreleaser.com/static/schema.json
 # vim: set ts=2 sw=2 tw=0 fo=cnqoj
 project_name: stencil-golang
+before:
+  hooks:
+    - go mod tidy
 builds:
-  - dir: .fake
-    no_main_check: true
-    goos:
-      - linux
+  - main: ./cmd/{{ .ProjectName }}
+    flags:
+      - -trimpath
+    ldflags:
+      - -s
+      - -w
+    env:
+      - CGO_ENABLED=0
     goarch:
       - amd64
+      - arm64
+    goos:
+      - linux
+      - darwin
 archives:
   - format: tar.xz
 checksum:
@@ -43,6 +54,5 @@ changelog:
       order: 9999
 
 release:
-  skip_upload: true
   footer: |-
-    **Full Changelog**: https://github.com/rgst-io/stencil-golang/compare/{{ .PreviousTag }}...{{ .Tag }}
+    **Full Changelog**: https://github.com//stencil-golang/compare/{{ .PreviousTag }}...{{ .Tag }}

@@ -25,7 +25,7 @@ jobs:
         with:
           experimental: true
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
       - name: Retrieve goreleaser version
         run: |-
           echo "version=$(mise current goreleaser)" >> "$GITHUB_OUTPUT"
