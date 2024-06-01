@@ -1,15 +1,15 @@
 {{- /* TODO(jaredallard): Don't put this inside of this file */}}
 {{- define "defaultVers" }}
-# renovate: datasource=golang-version packageName=go
+# renovate: datasource=github-tags depName=golang packageName=golang/go
 - golang: "1.22"
-# renovate: datasource=github-releases packageName=mvdan/sh
+# renovate: datasource=github-tags depName=shfmt packageName=mvdan/sh
 - shfmt: "3"
-# renovate: datasource=github-releases packageName=golangci/golangci-lint
+# renovate: datasource=github-tags depName=golangci-lint packageName=golangci/golangci-lint
 - golangci-lint: "1.59"
 - goreleaser: "latest"
 # renovate: datasource=go packageName=gotest.tools/gotestsum
-- "go:gotest.tools/gotestsum": "v1.11.0"
-- "go:golang.org/x/tools/cmd/goimports": "latest"
+- go:gotest.tools/gotestsum: "v1.11.0"
+- go:golang.org/x/tools/cmd/goimports: "latest"
 {{- end }}
 # Default versions of tools, to update these, set [tools.override]
 [tools]
