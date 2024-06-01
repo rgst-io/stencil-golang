@@ -8,7 +8,7 @@
 - golangci-lint: "1.59"
 - goreleaser: "latest"
 # renovate: datasource=go packageName=gotest.tools/gotestsum
-- go:gotest.tools/gotestsum: "v1.11.0"
+- go:gotest.tools/gotestsum: "v1.12.0"
 - go:golang.org/x/tools/cmd/goimports: "latest"
 {{- end }}
 # Default versions of tools, to update these, set [tools.override]
