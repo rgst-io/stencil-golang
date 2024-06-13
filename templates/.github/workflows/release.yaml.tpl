@@ -60,7 +60,7 @@ jobs:
           git tag -a "{{ "${{ steps.next_version.outputs.version }}" }}" -m "Release {{ "${{ steps.next_version.outputs.version }}" }}"
       - name: Create release artifacts and Github Release
         {{- /* renovate: datasource=github-tags packageName=goreleaser/goreleaser-action */}}
-        uses: goreleaser/goreleaser-action@v5
+        uses: goreleaser/goreleaser-action@v6
         with:
           distribution: goreleaser
           version: v{{ "${{" }} steps.goreleaser.outputs.version {{ "}}" }}
