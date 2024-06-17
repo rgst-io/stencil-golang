@@ -22,6 +22,13 @@
 {{ $key }} = "{{ $val }}"
 {{- end }}
 
+[tasks.init]
+description = "Initialize go module"
+{{- if not (stencil.Exists "go.mod") }}
+{{- $modulePath := stencil.Arg "modulePath" }}
+  run = "go mod init {{ $modulePath }}"
+{{- end }}
+
 [tasks.build]
 description = "Build a binary for the current platform/architecture"
 run = "go build -trimpath -o ./bin/ -v ./cmd/..."

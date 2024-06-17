@@ -2,6 +2,8 @@ name: github.com/rgst-io/stencil-golang
 postRunCommand:
   - name: mise install
     command: mise install
+  - name: mise run init
+    command: mise run init
   - name: mise run fmt
     command: mise run fmt
 arguments:
@@ -21,6 +23,13 @@ arguments:
         - Apache-2.0
         - GPL-3.0
         - Proprietary
+
+  modulePath:
+    description: |-
+      The go module path of the project.
+    schema:
+      type: string
+    required: true
 
   commands:
     description: |-
