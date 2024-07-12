@@ -5,6 +5,9 @@ project_name: {{ .Config.Name }}
 before:
   hooks:
     - go mod tidy
+report_sizes: true
+metadata:
+  mod_timestamp: "{{ "{{" }} .CommitTimestamp {{ "}}" }}"
 builds:
   - main: ./cmd/{{ "{{ .ProjectName }}" }}
     flags:
