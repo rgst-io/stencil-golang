@@ -30,7 +30,7 @@ builds:
       - linux
       - darwin
       ## <<Stencil::Block(extraOS)>>
-      {{ file.Block "extraOS" }}
+{{ file.Block "extraOS" }}
       ## <</Stencil::Block>>
     ignore:
       - goos: windows
