@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://goreleaser.com/static/schema.json
-# vim: set ts=2 sw=2 tw=0 fo=cnqoj
 {{- $org := stencil.Arg "org" }}
+version: 2
 project_name: {{ .Config.Name }}
 before:
   hooks:
@@ -12,14 +12,27 @@ builds:
     ldflags:
       - -s
       - -w
+      ## <<Stencil::Block(ldflags)>>
+{{ file.Block "ldflags" }}
+      ## <</Stencil::Block>>
     env:
       - CGO_ENABLED=0
     goarch:
       - amd64
       - arm64
+      ## <<Stencil::Block(extraArch)>>
+{{ file.Block "extraArch" }}
+      ## <</Stencil::Block>>
     goos:
       - linux
       - darwin
+      ## <<Stencil::Block(extraOS)>>
+      {{ file.Block "extraOS" }}
+      ## <</Stencil::Block>>
+    ignore:
+      - goos: windows
+        goarch: arm
+    mod_timestamp: "{{ "{{" }} .CommitTimestamp {{ "}}" }}"
 {{- if stencil.Exists "Dockerfile" }}
 dockers:
   # amd64
@@ -58,40 +71,17 @@ docker_manifests:
       - "ghcr.io/{{ $org }}/{{ "{{ .ProjectName }}" }}:{{ "{{ .Version }}" }}-arm64"
       - "ghcr.io/{{ $org }}/{{ "{{ .ProjectName }}" }}:{{ "{{ .Version }}" }}-amd64"
 {{- end }}
-archives:
-  - format: tar.xz
 checksum:
   name_template: "checksums.txt"
 snapshot:
   name_template: "{{ "{{ incpatch .Version }}" }}-next"
 changelog:
-  sort: asc
   use: git
-  filters:
-    exclude:
-      - "^test:"
-      - "^chore:"
-      - "merge conflict"
-      - Merge pull request
-      - Merge remote-tracking branch
-      - Merge branch
-      - go mod tidy
-  groups:
-    - title: Dependency updates
-      regexp: "^.*(feat|chore|fix)\\(deps\\)*:+.*$"
-      order: 300
-    - title: "New Features"
-      regexp: "^.*feat[(\\w)]*:+.*$"
-      order: 100
-    - title: "Bug fixes"
-      regexp: "^.*fix[(\\w)]*:+.*$"
-      order: 200
-    - title: "Documentation updates"
-      regexp: "^.*docs[(\\w)]*:+.*$"
-      order: 400
-    - title: Other work
-      order: 9999
-
 release:
+  prerelease: "auto"
   footer: |-
     **Full Changelog**: https://github.com/{{ $org }}/{{ .Config.Name }}/compare/{{ "{{ .PreviousTag }}" }}...{{ "{{ .Tag }}" }}
+
+## <<Stencil::Block(extraReleaseOpts)>>
+{{ file.Block "extraReleaseOpts" }}
+## <</Stencil::Block>>

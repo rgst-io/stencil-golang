@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: {{ .Config.Name }}-build-{{ "${{" }} github.head_ref {{ "}}" }}
+  group: {{ "${{" }} github.workflow {{ "}}" }}-{{ "${{" }} github.head_ref {{ "}}" }}
   cancel-in-progress: true
 
 jobs:
@@ -25,6 +25,19 @@ jobs:
           experimental: true
         env:
           GH_TOKEN: {{ "${{" }} github.token {{ "}}" }}
+      - name: Get Go directories
+        id: go
+        run: |
+          echo "cache_dir=$(go env GOCACHE)" >> "$GITHUB_OUTPUT"
+          echo "mod_cache_dir=$(go env GOMODCACHE)" >> "$GITHUB_OUTPUT"
+      - uses: actions/cache@v4
+        with:
+          path: {{ "${{" }} steps.go.outputs.cache_dir {{ "}}" }}
+          key: {{ "${{" }} runner.os {{ "}}" }}-go-build-cache-{{ "${{" }} hashFiles('**/go.sum') {{ "}}" }}
+      - uses: actions/cache@v4
+        with:
+          path: {{ "${{" }} steps.go.outputs.mod_cache_dir {{ "}}" }}
+          key: {{ "${{" }} runner.os {{ "}}" }}-go-mod-cache-{{ "${{" }} hashFiles('go.sum') {{ "}}" }}
       - name: Download dependencies
         run: go mod download
       - name: Run go test
