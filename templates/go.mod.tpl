@@ -1,4 +1,4 @@
 {{- file.Static }}
-module github.com/{{ $org }}/{{ .Config.Name }}
+module github.com/{{ stencil.Arg "org" }}/{{ .Config.Name }}
 
 go 1.22
