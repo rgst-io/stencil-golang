@@ -1,23 +1,23 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
-  "customManagers": [
-    {
-      "customType": "regex",
-      "description": "Update tool versions in .mise.toml.tpl",
-      "fileMatch": ["^templates/.mise.toml.tpl$"],
-      "matchStrings": [
-        "# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?)(?: versioning=(?<versioning>[a-z-]+?))?\\s- .+: \"(?<currentValue>.+?)\"\\s"
-      ]
-    },
-    {
-      "customType": "regex",
-      "description": "Update workflow versions in .github/workflows",
-      "fileMatch": ["^templates/.github/workflows/[a-z-]+.yaml.tpl$"],
-      "versioningTemplate": "docker",
-      "matchStrings": [
-        "{{- /\\* renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?) \\*/}}\\s+(?:- )?uses: [a-z-/]+@(?<currentValue>.+?)\\s"
-      ]
-    }
-  ]
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": ["config:base"],
+	"customManagers": [
+		{
+			"customType": "regex",
+			"description": "Update tool versions in .mise.toml.tpl",
+			"fileMatch": ["^templates/.mise.toml.tpl$"],
+			"matchStrings": [
+				"# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?)(?: versioning=(?<versioning>[a-z-]+?))?\\s- .+: \"(?<currentValue>.+?)\"\\s"
+			]
+		},
+		{
+			"customType": "regex",
+			"description": "Update workflow versions in .github/workflows",
+			"fileMatch": ["^templates/.github/workflows/[a-z-]+.yaml.tpl$"],
+			"versioningTemplate": "docker",
+			"matchStrings": [
+				"{{- /\\* renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?) \\*/}}\\s+(?:- )?uses: [a-z-/]+@(?<currentValue>.+?)\\s"
+			]
+		}
+	]
 }
