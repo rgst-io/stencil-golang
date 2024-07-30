@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/rgst-io/stencil/main/schemas/manifest.jsonschema.json
 name: github.com/rgst-io/stencil-golang
 postRunCommand:
   - name: mise install
@@ -7,8 +8,17 @@ postRunCommand:
 arguments:
   org:
     description: The Github organization to use for the project
+    required: true
     schema:
       type: string
+
+  library:
+    description: |-
+      Whether the project is a library or not. If set to true, the
+      project will be created as a library, meaning no commands will
+      be created.
+    schema:
+      type: boolean
 
   license:
     default: Proprietary

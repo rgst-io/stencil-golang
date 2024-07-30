@@ -2,13 +2,13 @@
 {{- $org := stencil.Arg "org" }}
 version: 2
 project_name: {{ .Config.Name }}
-before:
-  hooks:
-    - go mod tidy
 report_sizes: true
 metadata:
   mod_timestamp: "{{ "{{" }} .CommitTimestamp {{ "}}" }}"
 builds:
+{{- if stencil.Arg "library" }}
+  - skip: true
+{{- else }}
   - main: ./cmd/{{ "{{ .ProjectName }}" }}
     flags:
       - -trimpath
@@ -36,7 +36,8 @@ builds:
       - goos: windows
         goarch: arm
     mod_timestamp: "{{ "{{" }} .CommitTimestamp {{ "}}" }}"
-{{- if stencil.Exists "Dockerfile" }}
+{{- end }}
+{{- if and (not (stencil.Arg "library")) (stencil.Exists "Dockerfile") }}
 dockers:
   # amd64
   - use: buildx

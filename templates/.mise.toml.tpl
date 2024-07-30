@@ -1,5 +1,7 @@
 {{- /* TODO(jaredallard): Don't put this inside of this file */}}
 {{- define "defaultVers" }}
+# Bun is used only for prettier.
+- bun: "latest"
 - git-cliff: "latest"
 # renovate: datasource=github-tags depName=golang packageName=golang/go
 - golang: "1.22"
@@ -39,6 +41,7 @@ run = [
 	"gofmt -s -w .",
 	"goimports -w .",
 	"shfmt -w .",
+	"bun node_modules/.bin/prettier --write '**/*.{json,yaml,yml,md,jsonschema.json}'",
 ]
 
 [tasks.lint]
