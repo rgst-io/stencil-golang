@@ -1,9 +1,19 @@
-version: 0.5.0
+version: 0.7.0
 modules:
     - name: github.com/rgst-io/stencil-golang
-      url: file://./
-      version: local
+      url: ./
+      version:
+        virtual: local
 files:
+    - name: .cliff.toml
+      template: .cliff.toml.tpl
+      module: github.com/rgst-io/stencil-golang
+    - name: .editorconfig
+      template: .editorconfig.tpl
+      module: github.com/rgst-io/stencil-golang
+    - name: .github/scripts/get-next-version.sh
+      template: .github/scripts/get-next-version.sh.tpl
+      module: github.com/rgst-io/stencil-golang
     - name: .github/settings.yml
       template: .github/settings.yml.tpl
       module: github.com/rgst-io/stencil-golang
@@ -13,11 +23,17 @@ files:
     - name: .github/workflows/tests.yaml
       template: .github/workflows/tests.yaml.tpl
       module: github.com/rgst-io/stencil-golang
+    - name: .gitignore
+      template: .gitignore.tpl
+      module: github.com/rgst-io/stencil-golang
     - name: .goreleaser.yaml
       template: .goreleaser.yaml.tpl
       module: github.com/rgst-io/stencil-golang
     - name: .mise.toml
       template: .mise.toml.tpl
+      module: github.com/rgst-io/stencil-golang
+    - name: .mise/tasks/changelog-release
+      template: .mise/tasks/changelog-release.tpl
       module: github.com/rgst-io/stencil-golang
     - name: .vscode/extensions.json
       template: .vscode/extensions.json.tpl
@@ -30,4 +46,10 @@ files:
       module: github.com/rgst-io/stencil-golang
     - name: LICENSE
       template: LICENSE_GPL-3.0.tpl
+      module: github.com/rgst-io/stencil-golang
+    - name: cmd/stencil-golang/stencil-golang.go
+      template: cmd/$name/name.go.tpl
+      module: github.com/rgst-io/stencil-golang
+    - name: package.json
+      template: package.json.tpl
       module: github.com/rgst-io/stencil-golang

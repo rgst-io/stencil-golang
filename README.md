@@ -5,9 +5,9 @@ on CI, development environment, and testing.
 
 ## What's Included
 
-* Github Actions
-* Releasing via [GoReleaser](https://goreleaser.com/) ran by CI.
-* Testing using `gotestsum` and linting using `golangci-lint`.
+- Github Actions
+- Releasing via [GoReleaser](https://goreleaser.com/) ran by CI.
+- Testing using `gotestsum` and linting using `golangci-lint`.
 
 ## License
 
