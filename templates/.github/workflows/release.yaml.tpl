@@ -19,6 +19,9 @@ permissions:
   contents: write
   packages: write
   issues: write
+  # Used by attestations in the release workflow.
+  id-token: write
+  attestations: write
 
 concurrency:
   group: {{ "${{" }} github.workflow {{ "}}" }}-{{ "${{" }} github.head_ref {{ "}}" }}
@@ -99,8 +102,10 @@ jobs:
           ## <<Stencil::Block(goreleaseEnvVars)>>
 {{ file.Block "goreleaseEnvVars" }}
           ## <</Stencil::Block>>
+{{- if not (stencil.Arg "library") }}
       - uses: actions/attest-build-provenance@v1
         with:
           # We attest all generated _archives_ because those are what we
           # upload to Github Releases.
           subject-path: dist/{{ .Config.Name }}_*.*, dist/checksums.txt
+{{- end }}
