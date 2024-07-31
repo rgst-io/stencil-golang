@@ -9,33 +9,39 @@ builds:
 {{- if stencil.Arg "library" }}
   - skip: true
 {{- else }}
-  - main: ./cmd/{{ "{{ .ProjectName }}" }}
+{{- range $cmd := (stencil.Arg "commands" | default (list .Config.Name)) }}
+  - main: ./cmd/{{ $cmd }}
     flags:
       - -trimpath
     ldflags:
       - -s
       - -w
-      ## <<Stencil::Block(ldflags)>>
-{{ file.Block "ldflags" }}
+      {{- $ldflagsBlockName := printf "%s%s" $cmd (title "ldflags") }}
+      ## <<Stencil::Block({{ $ldflagsBlockName }})>>
+{{ file.Block $ldflagsBlockName }}
       ## <</Stencil::Block>>
     env:
       - CGO_ENABLED=0
     goarch:
       - amd64
       - arm64
-      ## <<Stencil::Block(extraArch)>>
-{{ file.Block "extraArch" }}
+      {{- $extraArchBlockName := printf "%s%s" $cmd (title "extraArch") }}
+      ## <<Stencil::Block({{ $extraArchBlockName }})>>
+{{ file.Block $extraArchBlockName }}
       ## <</Stencil::Block>>
     goos:
       - linux
       - darwin
-      ## <<Stencil::Block(extraOS)>>
-{{ file.Block "extraOS" }}
+      - windows
+      {{- $extraOSBlockName := printf "%s%s" $cmd (title "extraOS") }}
+      ## <<Stencil::Block({{ $extraOSBlockName }})>>
+{{ file.Block $extraOSBlockName }}
       ## <</Stencil::Block>>
     ignore:
       - goos: windows
         goarch: arm
     mod_timestamp: "{{ "{{" }} .CommitTimestamp {{ "}}" }}"
+{{- end }}
 {{- end }}
 {{- if and (not (stencil.Arg "library")) (stencil.Exists "Dockerfile") }}
 dockers:
