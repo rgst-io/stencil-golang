@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/rgst-io/stencil/main/schemas/manifest.jsonschema.json
 name: github.com/rgst-io/stencil-golang
+type: templates,extension
 postRunCommand:
   - name: mise install
     command: mise install
@@ -20,8 +21,14 @@ arguments:
     schema:
       type: boolean
 
+  copyrightHolder:
+    description: |-
+      The entity that holds the copyright for the
+      project. Only applies if 'license' is set to Proprietary.
+    schema:
+      type: string
   license:
-    default: Proprietary
+    default: GPL-3.0
     description: |-
       License to use for the project
     schema:
@@ -29,6 +36,7 @@ arguments:
       enum:
         - AGPL-3.0
         - Apache-2.0
+        - MIT
         - GPL-3.0
         - LGPL-3.0
         - Proprietary

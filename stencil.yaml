@@ -2,7 +2,8 @@ name: stencil-golang
 arguments:
   org: rgst-io
   license: GPL-3.0
-  library: true
+  commands:
+    - plugin
 modules:
   - name: github.com/rgst-io/stencil-golang
 replacements:
