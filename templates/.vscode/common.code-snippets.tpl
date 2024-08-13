@@ -68,13 +68,13 @@ see <https://opensource.org/licenses/MIT>.
 
 
 {{ define "code-snippets.copyright" }}
-{{- $licenseTextSlice := splitList "\n" .License.Body -}}
+{{- $licenseTextSlice := splitList "\n" .Data.Body -}}
 {
   "Copyright": {
     "description": "Inserts a copyright header",
     "prefix": ["license", "copy", "copyright"],
 		"body": [
-			{{- if not (eq .License.Name "Proprietary") }}
+			{{- if not (eq .Data.Name "Proprietary") }}
 			"// Copyright (C) ${CURRENT_YEAR} {{ .Config.Name }} contributors",
 			{{- else }}
 			"// Copyright (C) ${CURRENT_YEAR} {{ stencil.arg "copyrightHolder" }}. All rights reserved.",
@@ -87,9 +87,9 @@ see <https://opensource.org/licenses/MIT>.
 			{{- end }}
 			"//{{ $line }}",
 			{{- end }}
-			{{- if not (eq .License.Name "Proprietary") }}
+			{{- if not (eq .Data.Name "Proprietary") }}
 			"//",
-			"// SPDX-License-Identifier: {{ .License.Name }}",
+			"// SPDX-License-Identifier: {{ .Data.Name }}",
 			{{- end }}
 			"",
 		]
@@ -102,9 +102,5 @@ see <https://opensource.org/licenses/MIT>.
 	"Name" $license
 	"Body" ""
 )}}
-{{ $inputs := (dict
-	"License" $licenseObj
-	"Config" .Config
-)}}
-{{ set $licenseObj "Body" (stencil.ApplyTemplate (list "code-snippets" "copyright" $license | join ".") $inputs) }}
-{{ file.SetContents (stencil.ApplyTemplate "code-snippets.copyright" $inputs) }}
+{{ set $licenseObj "Body" (stencil.ApplyTemplate (list "code-snippets" "copyright" $license | join ".") $licenseObj) }}
+{{ file.SetContents (stencil.ApplyTemplate "code-snippets.copyright" $licenseObj) }}
