@@ -65,6 +65,8 @@ github.com/stretchr/testify v1.9.0 h1:HtqpIVDClZ4nwg75+f6Lvsy/wHu+3BoSGCbBAcpTsT
 github.com/stretchr/testify v1.9.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
 go.rgst.io/stencil v0.8.0 h1:pB32EHPF/JTMSjSLa60JUNR/HI8AAw1lOxceNIB3KW0=
 go.rgst.io/stencil v0.8.0/go.mod h1:qhS5B8U5wimT0rBbU2oGbh6i4CO51DdU1r9gj5/YeVo=
+go.rgst.io/stencil v0.9.0 h1:/Et2I6YcQx6F4tCmiQSVje1ra0BrJ/KB0YkOO9afEls=
+go.rgst.io/stencil v0.9.0/go.mod h1:qyFDV90yjeEUEQdoovZsMLJdY0kvUclvvs+8ZM/x7Ms=
 golang.org/x/exp v0.0.0-20240529005216-23cca8864a10 h1:vpzMC/iZhYFAjJzHU0Cfuq+w1vLLsF2vLkDrPjzKYck=
 golang.org/x/exp v0.0.0-20240529005216-23cca8864a10/go.mod h1:XtvwrStGgqGPLc4cjQfWqZHG1YFdYs6swckp8vpsjnc=
 golang.org/x/net v0.27.0 h1:5K3Njcw06/l2y9vpGCSdcxWOYHOUk3dVNGDXN+FvAys=
