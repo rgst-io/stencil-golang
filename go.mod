@@ -4,6 +4,7 @@ go 1.22
 
 require (
 	github.com/google/go-github/v63 v63.0.0
+	github.com/google/go-github/v64 v64.0.0
 	go.rgst.io/stencil v0.9.0
 	gotest.tools/v3 v3.5.1
 )
