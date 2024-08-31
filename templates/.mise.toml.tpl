@@ -4,7 +4,7 @@
 - bun: "latest"
 - git-cliff: "latest"
 # renovate: datasource=github-tags depName=golang packageName=golang/go
-- golang: "1.22"
+- golang: "1.23.0"
 # renovate: datasource=github-tags depName=golangci-lint packageName=golangci/golangci-lint
 - golangci-lint: "1.60.3"
 - goreleaser: "latest"
