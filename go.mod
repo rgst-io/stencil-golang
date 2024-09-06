@@ -2,7 +2,7 @@ module github.com/rgst-io/stencil-golang
 
 go 1.23
 
-toolchain go1.23.0
+toolchain go1.23.1
 
 require (
 	github.com/google/go-github/v64 v64.0.0
