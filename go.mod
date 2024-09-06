@@ -1,10 +1,12 @@
 module github.com/rgst-io/stencil-golang
 
-go 1.22
+go 1.23
+
+toolchain go1.23.0
 
 require (
 	github.com/google/go-github/v64 v64.0.0
-	go.rgst.io/stencil v0.9.0
+	go.rgst.io/stencil v0.10.1
 	gotest.tools/v3 v3.5.1
 )
 
@@ -32,8 +34,8 @@ require (
 	github.com/rivo/uniseg v0.4.7 // indirect
 	golang.org/x/exp v0.0.0-20240529005216-23cca8864a10 // indirect
 	golang.org/x/net v0.27.0 // indirect
-	golang.org/x/sys v0.22.0 // indirect
-	golang.org/x/text v0.16.0 // indirect
+	golang.org/x/sys v0.23.0 // indirect
+	golang.org/x/text v0.17.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20240528184218-531527333157 // indirect
 	google.golang.org/grpc v1.64.0 // indirect
 	google.golang.org/protobuf v1.34.1 // indirect
