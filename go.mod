@@ -7,7 +7,7 @@ toolchain go1.23.1
 require (
 	github.com/google/go-github/v64 v64.0.0
 	github.com/google/go-github/v65 v65.0.0
-	go.rgst.io/stencil v0.10.1
+	go.rgst.io/stencil v0.10.2
 	gotest.tools/v3 v3.5.1
 )
 
