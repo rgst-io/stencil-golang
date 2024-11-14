@@ -45,7 +45,7 @@ jobs:
           gotestsum -- -coverprofile=cover.out ./...
       - name: Upload test coverage
         {{- /* renovate: datasource=github-tags packageName=codecov/codecov-action */}}
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           token: {{ "${{" }} secrets.CODECOV_TOKEN {{ "}}" }}
           files: ./cover.out
