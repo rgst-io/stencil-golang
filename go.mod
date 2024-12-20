@@ -5,8 +5,7 @@ go 1.23
 toolchain go1.23.1
 
 require (
-	github.com/google/go-github/v64 v64.0.0
-	github.com/google/go-github/v65 v65.0.0
+	github.com/google/go-github/v67 v67.0.0
 	go.rgst.io/stencil v0.14.0
 	gotest.tools/v3 v3.5.1
 )
@@ -28,7 +27,6 @@ require (
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mattn/go-runewidth v0.0.16 // indirect
-	github.com/mitchellh/go-testing-interface v1.14.1 // indirect
 	github.com/muesli/termenv v0.15.2 // indirect
 	github.com/oklog/run v1.1.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
