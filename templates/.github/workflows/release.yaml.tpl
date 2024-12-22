@@ -50,10 +50,12 @@ jobs:
         run: |
           echo "cache_dir=$(go env GOCACHE)" >> "$GITHUB_OUTPUT"
           echo "mod_cache_dir=$(go env GOMODCACHE)" >> "$GITHUB_OUTPUT"
+      {{- /* renovate: datasource=github-tags packageName=actions/cache */}}
       - uses: actions/cache@v4
         with:
           path: {{ "${{" }} steps.go.outputs.cache_dir {{ "}}" }}
           key: {{ "${{" }} github.workflow {{ "}}" }}-{{ "${{" }} runner.os {{ "}}" }}-go-build-cache-{{ "${{" }} hashFiles('**/go.sum') {{ "}}" }}
+      {{- /* renovate: datasource=github-tags packageName=actions/cache */}}
       - uses: actions/cache@v4
         with:
           path: {{ "${{" }} steps.go.outputs.mod_cache_dir {{ "}}" }}
@@ -103,7 +105,8 @@ jobs:
 {{ file.Block "goreleaseEnvVars" }}
           ## <</Stencil::Block>>
 {{- if not (stencil.Arg "library") }}
-      - uses: actions/attest-build-provenance@v1
+      {{- /* renovate: datasource=github-tags packageName=actions/attest-build-provenance */}}
+      - uses: actions/attest-build-provenance@v2
         with:
           # We attest all generated _archives_ because those are what we
           # upload to Github Releases.
