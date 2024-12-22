@@ -23,6 +23,8 @@ import (
 	"fmt"
 
 	"github.com/google/go-github/v67/github"
+	"github.com/jaredallard/vcs"
+	"github.com/jaredallard/vcs/token"
 	"go.rgst.io/stencil/pkg/extensions/apiv1"
 )
 
@@ -37,7 +39,15 @@ type Instance struct {
 
 // New creates a new [Instance].
 func New(ctx context.Context) *Instance {
-	return &Instance{ctx: ctx, gh: github.NewClient(nil)}
+	// Create an authenticated token, if possible. This gives us a higher
+	// rate limit.
+	tstr := ""
+	t, err := token.Fetch(ctx, vcs.ProviderGithub, false, &token.Options{AllowUnauthenticated: true})
+	if err == nil {
+		tstr = t.Value
+	}
+
+	return &Instance{ctx: ctx, gh: github.NewClient(nil).WithAuthToken(tstr)}
 }
 
 // GetConfig returns a [apiv1.Config] for the [Instance].

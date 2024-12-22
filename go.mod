@@ -1,11 +1,10 @@
 module github.com/rgst-io/stencil-golang
 
-go 1.23
-
-toolchain go1.23.4
+go 1.23.4
 
 require (
 	github.com/google/go-github/v67 v67.0.0
+	github.com/jaredallard/vcs v0.4.0
 	go.rgst.io/stencil v0.14.0
 	gotest.tools/v3 v3.5.1
 )
@@ -23,6 +22,7 @@ require (
 	github.com/hashicorp/go-hclog v1.6.3 // indirect
 	github.com/hashicorp/go-plugin v1.6.2 // indirect
 	github.com/hashicorp/yamux v0.1.2 // indirect
+	github.com/jaredallard/cmdexec v1.2.1 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
