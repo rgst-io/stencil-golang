@@ -45,3 +45,7 @@ launch.json
 
 # Currently a build artifact
 CHANGELOG.md
+
+## <<Stencil::Block(custom)>>
+{{ file.Block "custom" }}
+## <</Stencil::Block>>
