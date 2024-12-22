@@ -40,7 +40,7 @@ func (i *Instance) GetLicense(t *apiv1.TemplateFunctionExec) (any, error) {
 
 // GetLicenses returns a list of commonly used licenses from Github's
 // License API.
-func (i *Instance) GetLicenses(t *apiv1.TemplateFunctionExec) (any, error) {
+func (i *Instance) GetLicenses(_ *apiv1.TemplateFunctionExec) (any, error) {
 	licenses, _, err := i.gh.Licenses.List(i.ctx)
 	if err != nil {
 		return nil, err

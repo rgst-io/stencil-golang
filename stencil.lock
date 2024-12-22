@@ -1,4 +1,4 @@
-version: 0.8.0
+version: 0.15.0
 modules:
     - name: github.com/rgst-io/stencil-golang
       url: ./
@@ -25,6 +25,9 @@ files:
       module: github.com/rgst-io/stencil-golang
     - name: .gitignore
       template: .gitignore.tpl
+      module: github.com/rgst-io/stencil-golang
+    - name: .golangci.yml
+      template: .golangci.yml.tpl
       module: github.com/rgst-io/stencil-golang
     - name: .goreleaser.yaml
       template: .goreleaser.yaml.tpl
