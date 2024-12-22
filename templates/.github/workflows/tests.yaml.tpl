@@ -44,7 +44,7 @@ jobs:
         run: go mod download
       - name: Run go test
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: {{ "${{" }} secrets.GITHUB_TOKEN {{ "}}" }}
         run: |
           gotestsum -- -coverprofile=cover.out ./...
       - name: Upload test coverage
