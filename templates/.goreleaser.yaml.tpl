@@ -84,7 +84,7 @@ docker_manifests:
 checksum:
   name_template: "checksums.txt"
 snapshot:
-  name_template: "{{ "{{ incpatch .Version }}" }}-next"
+  version_template: "{{ "{{ incpatch .Version }}" }}-next"
 changelog:
   use: git
 release:
