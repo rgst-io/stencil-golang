@@ -5,7 +5,7 @@ go 1.23.4
 require (
 	github.com/google/go-github/v67 v67.0.0
 	github.com/jaredallard/vcs v0.5.1
-	go.rgst.io/stencil v0.14.0
+	go.rgst.io/stencil v0.15.0
 	gotest.tools/v3 v3.5.1
 )
 
@@ -37,5 +37,5 @@ require (
 	golang.org/x/text v0.21.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20241209162323-e6fa225c2576 // indirect
 	google.golang.org/grpc v1.69.0 // indirect
-	google.golang.org/protobuf v1.35.2 // indirect
+	google.golang.org/protobuf v1.36.0 // indirect
 )
