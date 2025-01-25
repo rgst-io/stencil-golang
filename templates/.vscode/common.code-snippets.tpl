@@ -77,7 +77,7 @@ see <https://opensource.org/licenses/MIT>.
 			{{- if not (eq .Data.Name "Proprietary") }}
 			"// Copyright (C) ${CURRENT_YEAR} {{ .Config.Name }} contributors",
 			{{- else }}
-			"// Copyright (C) ${CURRENT_YEAR} {{ stencil.arg "copyrightHolder" }}. All rights reserved.",
+			"// Copyright (C) ${CURRENT_YEAR} {{ stencil.Arg "copyrightHolder" }}. All rights reserved.",
 			{{- end }}
 			{{- range $i, $line := $licenseTextSlice }}
 			{{- /* Skip final new lines */}}
