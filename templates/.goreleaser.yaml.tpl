@@ -51,8 +51,8 @@ dockers:
       - --platform=linux/amd64
       - --label=org.opencontainers.image.title={{ "{{ .ProjectName }}" }}
       - --label=org.opencontainers.image.description={{ "{{ .ProjectName }}" }}
-      - --label=org.opencontainers.image.url=https://github.com/{{ $org }}/{{ "{{ .ProjectName }}" }}
-      - --label=org.opencontainers.image.source=https://github.com/{{ $org }}/{{ "{{ .ProjectName }}" }}
+      - --label=org.opencontainers.image.url=https://{{ stencil.Arg "vcs_host" }}/{{ $org }}/{{ "{{ .ProjectName }}" }}
+      - --label=org.opencontainers.image.source=https://{{ stencil.Arg "vcs_host" }}/{{ $org }}/{{ "{{ .ProjectName }}" }}
       - --label=org.opencontainers.image.version={{ "{{ .Version }}" }}
       - --label=org.opencontainers.image.created={{ "{{ time \"2006-01-02T15:04:05Z07:00\" }}" }}
       - --label=org.opencontainers.image.revision={{ "{{ .FullCommit }}" }}
@@ -67,8 +67,8 @@ dockers:
       - --platform=linux/arm64
       - --label=org.opencontainers.image.title={{ "{{ .ProjectName }}" }}
       - --label=org.opencontainers.image.description={{ "{{ .ProjectName }}" }}
-      - --label=org.opencontainers.image.url=https://github.com/{{ $org }}/{{ "{{ .ProjectName }}" }}
-      - --label=org.opencontainers.image.source=https://github.com/{{ $org }}/{{ "{{ .ProjectName }}" }}
+      - --label=org.opencontainers.image.url=https://{{ stencil.Arg "vcs_host" }}/{{ $org }}/{{ "{{ .ProjectName }}" }}
+      - --label=org.opencontainers.image.source=https://{{ stencil.Arg "vcs_host" }}/{{ $org }}/{{ "{{ .ProjectName }}" }}
       - --label=org.opencontainers.image.version={{ "{{ .Version }}" }}
       - --label=org.opencontainers.image.created={{ "{{ time \"2006-01-02T15:04:05Z07:00\" }}" }}
       - --label=org.opencontainers.image.revision={{ "{{ .FullCommit }}" }}
@@ -90,7 +90,7 @@ changelog:
 release:
   prerelease: "auto"
   footer: |-
-    **Full Changelog**: https://github.com/{{ $org }}/{{ .Config.Name }}/compare/{{ "{{ .PreviousTag }}" }}...{{ "{{ .Tag }}" }}
+    **Full Changelog**: https://{{ stencil.Arg "vcs_host" }}/{{ $org }}/{{ .Config.Name }}/compare/{{ "{{ .PreviousTag }}" }}...{{ "{{ .Tag }}" }}
 
 ## <<Stencil::Block(extraReleaseOpts)>>
 {{ file.Block "extraReleaseOpts" }}

@@ -15,7 +15,7 @@ func main() {
   {{ $cmds := stencil.Arg "commands" | default (list .Config.Name) }}
   {{ range $cmds }}
   {{ file.Create (printf "cmd/%s/%s.go" . .) 0600 (now) }}
-  {{ file.SetContents (stencil.ApplyTemplate "cmd" .) }}
+  {{ file.SetContents (stencil.Include "cmd" .) }}
 
   # Static until we have a framework.
   {{ file.Static }}

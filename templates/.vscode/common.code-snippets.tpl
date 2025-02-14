@@ -102,5 +102,5 @@ see <https://opensource.org/licenses/MIT>.
 	"Name" $license
 	"Body" ""
 )}}
-{{ set $licenseObj "Body" (stencil.ApplyTemplate (list "code-snippets" "copyright" $license | join ".") $licenseObj) }}
-{{ file.SetContents (stencil.ApplyTemplate "code-snippets.copyright" $licenseObj) }}
+{{ set $licenseObj "Body" (stencil.Include (list "code-snippets" "copyright" $license | join ".") $licenseObj) }}
+{{ file.SetContents (stencil.Include "code-snippets.copyright" $licenseObj) }}

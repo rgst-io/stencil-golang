@@ -4,19 +4,19 @@
 - bun: "latest"
 - git-cliff: "latest"
 # renovate: datasource=github-tags depName=golang packageName=golang/go
-- golang: "1.23.4"
+- golang: "1.24.0"
 # renovate: datasource=github-tags depName=golangci-lint packageName=golangci/golangci-lint
-- golangci-lint: "1.63.4"
+- golangci-lint: "1.64.5"
 - goreleaser: "latest"
 # renovate: datasource=go packageName=gotest.tools/gotestsum
-- go:gotest.tools/gotestsum: "v1.12.0"
+- go:gotest.tools/gotestsum: "1.12.0"
 - go:golang.org/x/tools/cmd/goimports: "latest"
 - go:mvdan.cc/sh/v3/cmd/shfmt: "latest"
 - go:github.com/thenativeweb/get-next-version: "latest"
 {{- end }}
 # Default versions of tools, to update these, set [tools.override]
 [tools]
-{{- range (fromYaml (stencil.ApplyTemplate "defaultVers")) }}
+{{- range (fromYaml (stencil.Include "defaultVers")) }}
 {{- $key := index (keys .) 0 }}
 {{- $val := index . $key }}
 {{- if contains ":" $key }}

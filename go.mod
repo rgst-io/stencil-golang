@@ -1,6 +1,6 @@
 module github.com/rgst-io/stencil-golang
 
-go 1.23.4
+go 1.24
 
 require (
 	github.com/google/go-github/v69 v69.1.0

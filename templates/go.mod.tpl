@@ -1,4 +1,4 @@
 {{- file.Static }}
-module github.com/{{ stencil.Arg "org" }}/{{ .Config.Name }}
+module {{ stencil.Include "importPath" }}/{{ stencil.Arg "org" }}/{{ .Config.Name }}
 
-go 1.22
+go 1.23
