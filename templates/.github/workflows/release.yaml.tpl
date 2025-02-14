@@ -39,12 +39,22 @@ jobs:
         with:
           fetch-depth: 0
           fetch-tags: true
-      {{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
+			{{- if (eq (stencil.Arg "vcs") "github") -}}
+			{{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
       - uses: jdx/mise-action@v2
+			{{- else if (eq (stencil.Arg "vcs") "forgejo") }}
+      - uses: https://git.rgst.io/rgst-io/mise-action@v2
+			{{- end }}
         with:
           experimental: true
+				{{- if (eq (stencil.Arg "vcs") "forgejo") }}
+          ## <<Stencil::Block(forgejoGithubToken)>>
+          github_token: {{ (file.Block "forgejoGithubToken" | default "github_token: ''" | fromYaml).github_token | default "${{ github.token }}" }}
+          ## <</Stencil::Block>>
+				{{- else }}
         env:
           GH_TOKEN: {{ "${{" }} github.token {{ "}}" }}
+        {{- end }}
       - name: Get Go directories
         id: go
         run: |

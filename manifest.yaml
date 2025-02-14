@@ -10,6 +10,26 @@ postRunCommand:
   - name: mise run fmt
     command: mise run fmt
 arguments:
+  vcs:
+    description: |-
+      VCS provider to use. "vcs_host" must be set when this is set to
+      anything other than github.
+    default: "github"
+    schema:
+      type: string
+      default: "github"
+      enum:
+        - github
+        - forgejo
+  vcs_host:
+    default: "github.com"
+    description: |-
+      URL of the VCS host to used. Currently only tested with Github
+      compatible-ish VCS providers like Forgejo. Must be provided when
+      vcs is set to anything other than Github.
+    schema:
+      type: string
+      default: "github.com"
   org:
     description: The Github organization to use for the project
     required: true
