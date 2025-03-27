@@ -5,14 +5,14 @@ go 1.24
 require (
 	github.com/google/go-github/v70 v70.0.0
 	github.com/jaredallard/vcs v0.5.2
-	go.rgst.io/stencil/v2 v2.2.0
+	go.rgst.io/stencil/v2 v2.3.0
 	gotest.tools/v3 v3.5.2
 )
 
 require (
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
 	github.com/charmbracelet/lipgloss v1.0.0 // indirect
-	github.com/charmbracelet/log v0.4.0 // indirect
+	github.com/charmbracelet/log v0.4.1 // indirect
 	github.com/charmbracelet/x/ansi v0.8.0 // indirect
 	github.com/fatih/color v1.18.0 // indirect
 	github.com/go-logfmt/logfmt v0.6.0 // indirect
