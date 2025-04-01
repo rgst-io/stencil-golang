@@ -39,8 +39,8 @@ github.com/hashicorp/yamux v0.1.2 h1:XtB8kyFOyHXYVFnwT5C3+Bdo8gArse7j2AQ0DA0Uey8
 github.com/hashicorp/yamux v0.1.2/go.mod h1:C+zze2n6e/7wshOZep2A70/aQU6QBRWJO/G6FT1wIns=
 github.com/jaredallard/cmdexec v1.2.2 h1:96xWYRM7mAM7PZTO7Y2q2GREtC857CYPzWN5cfYVT+A=
 github.com/jaredallard/cmdexec v1.2.2/go.mod h1:cwOAlWkQmZOGRjiSMQVSL9GZ2eThrxEadpmo5N9nKlI=
-github.com/jaredallard/vcs v0.5.2 h1:0jUHef38j72Ah03JoSC11r4H4ctBwaHgMSBYOxi8xEI=
-github.com/jaredallard/vcs v0.5.2/go.mod h1:A9+GYnYQkhIziCZdaEvhNZpAFsOz0stZF5RDMorWqHs=
+github.com/jaredallard/vcs v0.5.3 h1:x4DMB4UBcQrlDEsg1Eks618MiqaIlQf7MI/fZCJR/WI=
+github.com/jaredallard/vcs v0.5.3/go.mod h1:Dfgmyicad0DScZ2I6DTxq4kjd38++6tyVdXVvc/ktIk=
 github.com/jhump/protoreflect v1.15.1 h1:HUMERORf3I3ZdX05WaQ6MIpd/NJ434hTp5YiKgfCL6c=
 github.com/jhump/protoreflect v1.15.1/go.mod h1:jD/2GMKKE6OqX8qTjhADU1e6DShO+gavG9e0Q693nKo=
 github.com/lucasb-eyer/go-colorful v1.2.0 h1:1nnpGOrhyZZuNyfu1QjKiUICQ74+3FNCN69Aj6K7nkY=
