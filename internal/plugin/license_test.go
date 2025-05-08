@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/google/go-github/v70/github"
+	"github.com/google/go-github/v72/github"
 	"github.com/rgst-io/stencil-golang/internal/plugin"
 	"go.rgst.io/stencil/v2/pkg/extensions/apiv1"
 	"gotest.tools/v3/assert"
