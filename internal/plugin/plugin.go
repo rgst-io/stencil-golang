@@ -55,6 +55,8 @@ func (*Instance) GetConfig() (*apiv1.Config, error) {
 	return &apiv1.Config{}, nil
 }
 
+// GetTemplateFunctions returns the functions implemented for this
+// plugin to satisfy [apiv1.Implementation].
 func (*Instance) GetTemplateFunctions() ([]*apiv1.TemplateFunction, error) {
 	return []*apiv1.TemplateFunction{
 		// GetLicense returns a license from Github's License API.
@@ -71,6 +73,8 @@ func (*Instance) GetTemplateFunctions() ([]*apiv1.TemplateFunction, error) {
 	}, nil
 }
 
+// ExecuteTemplateFunction executes a known template function to satisfy
+// [apiv1.Implementation].
 func (i *Instance) ExecuteTemplateFunction(exec *apiv1.TemplateFunctionExec) (any, error) {
 	switch exec.Name {
 	case "GetLicense":
