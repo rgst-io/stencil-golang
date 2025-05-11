@@ -5,7 +5,7 @@ go 1.24
 require (
 	github.com/google/go-github/v72 v72.0.0
 	github.com/jaredallard/vcs v0.5.3
-	go.rgst.io/stencil/v2 v2.3.0
+	go.rgst.io/stencil/v2 v2.4.0
 	gotest.tools/v3 v3.5.2
 )
 
@@ -32,9 +32,9 @@ require (
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	golang.org/x/exp v0.0.0-20241210194714-1829a127f884 // indirect
-	golang.org/x/net v0.37.0 // indirect
-	golang.org/x/sys v0.31.0 // indirect
-	golang.org/x/text v0.23.0 // indirect
+	golang.org/x/net v0.39.0 // indirect
+	golang.org/x/sys v0.32.0 // indirect
+	golang.org/x/text v0.24.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20241209162323-e6fa225c2576 // indirect
 	google.golang.org/grpc v1.69.0 // indirect
 	google.golang.org/protobuf v1.36.5 // indirect
