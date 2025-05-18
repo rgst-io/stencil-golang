@@ -12,7 +12,7 @@
 - go:gotest.tools/gotestsum: "1.12.2"
 - go:golang.org/x/tools/cmd/goimports: "latest"
 - go:mvdan.cc/sh/v3/cmd/shfmt: "latest"
-- go:github.com/thenativeweb/get-next-version: "latest"
+- go:github.com/caarlos0/svu: "latest"
 {{- end }}
 # Default versions of tools, to update these, set [tools.override]
 [tools]
