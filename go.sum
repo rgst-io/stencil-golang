@@ -88,8 +88,8 @@ go.opentelemetry.io/otel/sdk/metric v1.31.0 h1:i9hxxLJF/9kkvfHppyLL55aW7iIJz4Jjx
 go.opentelemetry.io/otel/sdk/metric v1.31.0/go.mod h1:CRInTMVvNhUKgSAMbKyTMxqOBC0zgyxzW55lZzX43Y8=
 go.opentelemetry.io/otel/trace v1.31.0 h1:ffjsj1aRouKewfr85U2aGagJ46+MvodynlQ1HYdmJys=
 go.opentelemetry.io/otel/trace v1.31.0/go.mod h1:TXZkRk7SM2ZQLtR6eoAWQFIHPvzQ06FJAsO1tJg480A=
-go.rgst.io/stencil/v2 v2.5.0 h1:mTUoVsWSyPlzy/1WvH00SapYCpmnOO7m5C8RiTQ5W8g=
-go.rgst.io/stencil/v2 v2.5.0/go.mod h1:qQv1CZWR2M3g9yvR3qVNT8j/bPPI0BRz3o6lckW5oXo=
+go.rgst.io/stencil/v2 v2.6.0 h1:cIB89CH8C6GhlOrxZZs/HyuKDHH6OR/kqbVKaYrDxH4=
+go.rgst.io/stencil/v2 v2.6.0/go.mod h1:773aVGorLpsMt8FjFxL71d82VdrULaqsIO1nkDH4ruo=
 golang.org/x/exp v0.0.0-20241210194714-1829a127f884 h1:Y/Mj/94zIQQGHVSv1tTtQBDaQaJe62U9bkDZKKyhPCU=
 golang.org/x/exp v0.0.0-20241210194714-1829a127f884/go.mod h1:qj5a5QZpwLU2NLQudwIN5koi3beDhSAlJwa67PuM98c=
 golang.org/x/net v0.39.0 h1:ZCu7HMWDxpXpaiKdhzIfaltL9Lp31x/3fCP11bc6/fY=
