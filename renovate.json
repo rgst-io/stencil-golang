@@ -1,15 +1,11 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
-	"extends": [
-		"github>jaredallard/jaredallard:renovate.json5"
-	],
+	"extends": ["github>jaredallard/jaredallard:renovate.json5"],
 	"customManagers": [
 		{
 			"customType": "regex",
 			"description": "Update tool versions in .mise.toml.tpl",
-			"managerFilePatterns": [
-				"/^templates/.mise.toml.tpl$/"
-			],
+			"managerFilePatterns": ["/^templates/.mise.toml.tpl$/"],
 			"matchStrings": [
 				"# renovate: datasource=(?<datasource>[a-z-]+?)(?: depName=(?<depName>.+?))? packageName=(?<packageName>.+?)(?: versioning=(?<versioning>[a-z-]+?))?\\s- .+: \"(?<currentValue>.+?)\"\\s"
 			]

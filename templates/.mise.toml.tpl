@@ -1,7 +1,5 @@
 {{- /* TODO(jaredallard): Don't put this inside of this file */}}
 {{- define "defaultVers" }}
-# Bun is used only for prettier.
-- bun: "latest"
 - git-cliff: "latest"
 # renovate: datasource=github-tags depName=golang packageName=golang/go
 - golang: "1.24.3"
@@ -13,6 +11,7 @@
 - go:golang.org/x/tools/cmd/goimports: "latest"
 - go:mvdan.cc/sh/v3/cmd/shfmt: "latest"
 - go:github.com/caarlos0/svu: "latest"
+- "npm:prettier": "^3.5.1"
 {{- end }}
 # Default versions of tools, to update these, set [tools.override]
 [tools]
@@ -42,7 +41,7 @@ run = [
 	"gofmt -s -w .",
 	"goimports -w .",
 	"shfmt -w .",
-	"bun node_modules/.bin/prettier --write '**/*.{json,yaml,yml,md,jsonschema.json}'",
+	"prettier --write '**/*.{json,yaml,yml,md,jsonschema.json}'",
 ]
 
 [tasks.lint]

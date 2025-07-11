@@ -1,4 +1,4 @@
-version: 2.4.0
+version: 2.6.0
 modules:
     - name: github.com/rgst-io/stencil-golang
       url: ./
@@ -61,7 +61,4 @@ files:
       module: github.com/rgst-io/stencil-golang
     - name: cmd/stencil-golang/stencil-golang.go
       template: cmd/$name/name.go.tpl
-      module: github.com/rgst-io/stencil-golang
-    - name: package.json
-      template: package.json.tpl
       module: github.com/rgst-io/stencil-golang
