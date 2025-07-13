@@ -11,7 +11,7 @@
 - gotestsum: "1.12.3"
 - go:golang.org/x/tools/cmd/goimports: "latest"
 - shfmt: "latest"
-- go:github.com/caarlos0/svu: "latest"
+- svu: "latest"
 {{- end }}
 # Default versions of tools, to update these, set [tools.override]
 [tools]
