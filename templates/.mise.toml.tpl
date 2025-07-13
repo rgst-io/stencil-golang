@@ -11,7 +11,6 @@
 - gotestsum: "1.12.3"
 - go:golang.org/x/tools/cmd/goimports: "latest"
 - shfmt: "latest"
-- svu: "latest"
 {{- end }}
 # Default versions of tools, to update these, set [tools.override]
 [tools]
@@ -53,6 +52,7 @@ description = """Get the version number that would be released if a release was 
 Pass --rc to get the next release candidate version.
 """
 run = ["./.github/scripts/get-next-version.sh"]
+tools.svu = "latest"
 
 [tasks.test]
 description = "Run tests"
