@@ -1,6 +1,7 @@
 
 # Default versions of tools, to update these, set [tools.override]
 [tools]
+bun = "latest"
 git-cliff = "latest"
 golang = "1.24.3"
 golangci-lint = "2.1.6"
@@ -10,6 +11,9 @@ goreleaser = "latest"
 "go:mvdan.cc/sh/v3/cmd/shfmt" = "latest"
 "go:github.com/caarlos0/svu" = "latest"
 "npm:prettier" = "^3.5.1"
+
+[settings.npm]
+bun = true
 
 [tasks.build]
 description = "Build a binary for the current platform/architecture"
@@ -24,11 +28,11 @@ run = ["git-cliff --config .cliff.toml --output CHANGELOG.md"]
 alias = "format"
 description = "Format code"
 run = [
-  "go mod tidy",
-  "gofmt -s -w .",
-  "goimports -w .",
-  "shfmt -w .",
-  "prettier --write '**/*.{json,yaml,yml,md,jsonschema.json}'",
+	"go mod tidy",
+	"gofmt -s -w .",
+	"goimports -w .",
+	"shfmt -w .",
+	"prettier --write '**/*.{json,yaml,yml,md,jsonschema.json}'",
 ]
 
 [tasks.lint]

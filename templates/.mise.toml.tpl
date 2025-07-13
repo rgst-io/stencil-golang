@@ -1,5 +1,6 @@
 {{- /* TODO(jaredallard): Don't put this inside of this file */}}
 {{- define "defaultVers" }}
+- bun: "latest"
 - git-cliff: "latest"
 # renovate: datasource=github-tags depName=golang packageName=golang/go
 - golang: "1.24.3"
@@ -23,6 +24,9 @@
 {{- end }}
 {{ $key }} = "{{ $val }}"
 {{- end }}
+
+[settings.npm]
+bun = true
 
 [tasks.build]
 description = "Build a binary for the current platform/architecture"
