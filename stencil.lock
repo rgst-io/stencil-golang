@@ -8,6 +8,9 @@ files:
     - name: .cliff.toml
       template: .cliff.toml.tpl
       module: github.com/rgst-io/stencil-golang
+    - name: .dprint.json
+      template: .dprint.json.tpl
+      module: github.com/rgst-io/stencil-golang
     - name: .editorconfig
       template: .editorconfig.tpl
       module: github.com/rgst-io/stencil-golang
