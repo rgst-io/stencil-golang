@@ -1,7 +1,6 @@
 {{- /* TODO(jaredallard): Don't put this inside of this file */}}
 {{- define "defaultVers" }}
 - dprint: "latest"
-- git-cliff: "latest"
 # renovate: datasource=github-tags depName=golang packageName=golang/go
 - golang: "1.24.5"
 # renovate: datasource=github-tags depName=golangci-lint packageName=golangci/golangci-lint
@@ -31,6 +30,7 @@ run = "go build -trimpath -o ./bin/ -v ./cmd/..."
 description = "Generate a changelog for the current version"
 outputs = ["CHANGELOG.md"]
 run = ["git-cliff --config .cliff.toml --output CHANGELOG.md"]
+tools.git-cliff = "latest"
 
 [tasks.fmt]
 alias = "format"
