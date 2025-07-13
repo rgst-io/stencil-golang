@@ -4,7 +4,7 @@
 dprint = "latest"
 git-cliff = "latest"
 golang = "1.24.3"
-golangci-lint = "2.1.6"
+golangci-lint = "2.2.2"
 goreleaser = "latest"
 "go:gotest.tools/gotestsum" = "1.12.2"
 "go:golang.org/x/tools/cmd/goimports" = "latest"
