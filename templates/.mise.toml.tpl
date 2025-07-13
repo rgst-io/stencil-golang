@@ -10,7 +10,7 @@
 # renovate: datasource=go packageName=gotest.tools/gotestsum
 - gotestsum: "1.12.3"
 - go:golang.org/x/tools/cmd/goimports: "latest"
-- go:mvdan.cc/sh/v3/cmd/shfmt: "latest"
+- shfmt: "latest"
 - go:github.com/caarlos0/svu: "latest"
 {{- end }}
 # Default versions of tools, to update these, set [tools.override]

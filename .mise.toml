@@ -8,7 +8,7 @@ golangci-lint = "2.2.2"
 goreleaser = "latest"
 gotestsum = "1.12.3"
 "go:golang.org/x/tools/cmd/goimports" = "latest"
-"go:mvdan.cc/sh/v3/cmd/shfmt" = "latest"
+shfmt = "latest"
 "go:github.com/caarlos0/svu" = "latest"
 
 [tasks.build]
