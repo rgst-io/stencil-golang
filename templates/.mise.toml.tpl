@@ -1,5 +1,6 @@
 {{- /* TODO(jaredallard): Don't put this inside of this file */}}
 {{- define "defaultVers" }}
+# Bun is used only for prettier.
 - bun: "latest"
 - git-cliff: "latest"
 # renovate: datasource=github-tags depName=golang packageName=golang/go
