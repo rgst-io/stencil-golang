@@ -4,9 +4,6 @@ type: templates,extension
 postRunCommand:
   - name: mise install
     command: mise install
-  # HACK(jaredallard): we want to conditionally run this in the future.
-  - name: bun install
-    command: bun install
   - name: mise run fmt
     command: mise run fmt
 arguments:
