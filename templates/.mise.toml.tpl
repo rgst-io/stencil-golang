@@ -1,17 +1,15 @@
 {{- /* TODO(jaredallard): Don't put this inside of this file */}}
 {{- define "defaultVers" }}
 - dprint: "latest"
-- git-cliff: "latest"
 # renovate: datasource=github-tags depName=golang packageName=golang/go
-- golang: "1.24.3"
+- golang: "1.24.5"
 # renovate: datasource=github-tags depName=golangci-lint packageName=golangci/golangci-lint
 - golangci-lint: "2.2.2"
 - goreleaser: "latest"
 # renovate: datasource=go packageName=gotest.tools/gotestsum
-- go:gotest.tools/gotestsum: "1.12.3"
+- gotestsum: "1.12.3"
 - go:golang.org/x/tools/cmd/goimports: "latest"
-- go:mvdan.cc/sh/v3/cmd/shfmt: "latest"
-- go:github.com/caarlos0/svu: "latest"
+- shfmt: "latest"
 {{- end }}
 [alias]
 dprint = "ubi:dprint/dprint"
@@ -35,6 +33,7 @@ run = "go build -trimpath -o ./bin/ -v ./cmd/..."
 description = "Generate a changelog for the current version"
 outputs = ["CHANGELOG.md"]
 run = ["git-cliff --config .cliff.toml --output CHANGELOG.md"]
+tools.git-cliff = "latest"
 
 [tasks.fmt]
 alias = "format"
@@ -56,6 +55,7 @@ description = """Get the version number that would be released if a release was 
 Pass --rc to get the next release candidate version.
 """
 run = ["./.github/scripts/get-next-version.sh"]
+tools.svu = "latest"
 
 [tasks.test]
 description = "Run tests"
