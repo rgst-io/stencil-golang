@@ -45,8 +45,8 @@ github.com/hashicorp/yamux v0.1.2 h1:XtB8kyFOyHXYVFnwT5C3+Bdo8gArse7j2AQ0DA0Uey8
 github.com/hashicorp/yamux v0.1.2/go.mod h1:C+zze2n6e/7wshOZep2A70/aQU6QBRWJO/G6FT1wIns=
 github.com/jaredallard/cmdexec v1.3.0 h1:hn+N8gQJUm2j9kUwxA3db9Tl98+ebEOT/PeHWw/HjhM=
 github.com/jaredallard/cmdexec v1.3.0/go.mod h1:vqXk8cMGX2lEVVVlN8r8A/AvioVAysF09L9r1RpsgY4=
-github.com/jaredallard/vcs v0.5.3 h1:x4DMB4UBcQrlDEsg1Eks618MiqaIlQf7MI/fZCJR/WI=
-github.com/jaredallard/vcs v0.5.3/go.mod h1:Dfgmyicad0DScZ2I6DTxq4kjd38++6tyVdXVvc/ktIk=
+github.com/jaredallard/vcs v0.5.4 h1:aYqns3zM0IHH+Urgz3syz4AAZ8CipSJFRtKrUgXfKEs=
+github.com/jaredallard/vcs v0.5.4/go.mod h1:b5rn3MY88XGZiCuJza2wsyOG5dKOKY+6wplYxvMWomg=
 github.com/jhump/protoreflect v1.15.1 h1:HUMERORf3I3ZdX05WaQ6MIpd/NJ434hTp5YiKgfCL6c=
 github.com/jhump/protoreflect v1.15.1/go.mod h1:jD/2GMKKE6OqX8qTjhADU1e6DShO+gavG9e0Q693nKo=
 github.com/lucasb-eyer/go-colorful v1.2.0 h1:1nnpGOrhyZZuNyfu1QjKiUICQ74+3FNCN69Aj6K7nkY=
@@ -88,8 +88,8 @@ go.opentelemetry.io/otel/sdk/metric v1.31.0 h1:i9hxxLJF/9kkvfHppyLL55aW7iIJz4Jjx
 go.opentelemetry.io/otel/sdk/metric v1.31.0/go.mod h1:CRInTMVvNhUKgSAMbKyTMxqOBC0zgyxzW55lZzX43Y8=
 go.opentelemetry.io/otel/trace v1.31.0 h1:ffjsj1aRouKewfr85U2aGagJ46+MvodynlQ1HYdmJys=
 go.opentelemetry.io/otel/trace v1.31.0/go.mod h1:TXZkRk7SM2ZQLtR6eoAWQFIHPvzQ06FJAsO1tJg480A=
-go.rgst.io/stencil/v2 v2.6.0 h1:cIB89CH8C6GhlOrxZZs/HyuKDHH6OR/kqbVKaYrDxH4=
-go.rgst.io/stencil/v2 v2.6.0/go.mod h1:773aVGorLpsMt8FjFxL71d82VdrULaqsIO1nkDH4ruo=
+go.rgst.io/stencil/v2 v2.7.0 h1:x2UJMTfCX6Yday4bWkM76D/P84gfkpYcl1i5o4tu3iE=
+go.rgst.io/stencil/v2 v2.7.0/go.mod h1:XHhQeQ+JR4slrEFAzFN2KwImb6Sy+gNc6S8IGYaxqJ8=
 golang.org/x/exp v0.0.0-20241210194714-1829a127f884 h1:Y/Mj/94zIQQGHVSv1tTtQBDaQaJe62U9bkDZKKyhPCU=
 golang.org/x/exp v0.0.0-20241210194714-1829a127f884/go.mod h1:qj5a5QZpwLU2NLQudwIN5koi3beDhSAlJwa67PuM98c=
 golang.org/x/net v0.39.0 h1:ZCu7HMWDxpXpaiKdhzIfaltL9Lp31x/3fCP11bc6/fY=

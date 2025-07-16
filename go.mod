@@ -4,8 +4,8 @@ go 1.24
 
 require (
 	github.com/google/go-github/v73 v73.0.0
-	github.com/jaredallard/vcs v0.5.3
-	go.rgst.io/stencil/v2 v2.6.0
+	github.com/jaredallard/vcs v0.5.4
+	go.rgst.io/stencil/v2 v2.7.0
 	gotest.tools/v3 v3.5.2
 )
 
