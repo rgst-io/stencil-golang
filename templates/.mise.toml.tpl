@@ -13,6 +13,9 @@
 - go:mvdan.cc/sh/v3/cmd/shfmt: "latest"
 - go:github.com/caarlos0/svu: "latest"
 {{- end }}
+[alias]
+dprint = "ubi:dprint/dprint"
+
 # Default versions of tools, to update these, set [tools.override]
 [tools]
 {{- range (fromYaml (stencil.Include "defaultVers")) }}
