@@ -70,6 +70,11 @@ func (*Instance) GetTemplateFunctions() ([]*apiv1.TemplateFunction, error) {
 			Name:              "GetLicenses",
 			NumberOfArguments: 0,
 		},
+		// Merge merges two objects together using mergo
+		{
+			Name:              "Merge",
+			NumberOfArguments: 2,
+		},
 	}, nil
 }
 
@@ -81,6 +86,8 @@ func (i *Instance) ExecuteTemplateFunction(exec *apiv1.TemplateFunctionExec) (an
 		return i.GetLicense(exec)
 	case "GetLicenses":
 		return i.GetLicenses(exec)
+	case "Merge":
+		return i.Merge(exec)
 	}
 
 	return nil, fmt.Errorf("unknown template function: %s", exec.Name)

@@ -2,14 +2,13 @@
 [alias]
 dprint = "ubi:dprint/dprint"
 
-# Default versions of tools, to update these, set [tools.override]
 [tools]
 dprint = "latest"
+"go:golang.org/x/tools/cmd/goimports" = "latest"
 golang = "1.24.5"
 golangci-lint = "2.2.2"
 goreleaser = "latest"
 gotestsum = "1.12.3"
-"go:golang.org/x/tools/cmd/goimports" = "latest"
 shfmt = "latest"
 
 [tasks.build]

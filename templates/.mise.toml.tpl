@@ -1,29 +1,27 @@
+{{- $existingTools := dict }}
+{{- if stencil.Exists ".mise.toml" }}
+{{- $existingTools = (stencil.ReadFile ".mise.toml" | fromToml).tools | default (dict) }}
+{{- end }}
 {{- /* TODO(jaredallard): Don't put this inside of this file */}}
 {{- define "defaultVers" }}
-- dprint: "latest"
+dprint: "latest"
 # renovate: datasource=github-tags depName=golang packageName=golang/go
-- golang: "1.24.5"
+golang: "1.24.5"
 # renovate: datasource=github-tags depName=golangci-lint packageName=golangci/golangci-lint
-- golangci-lint: "2.2.2"
-- goreleaser: "latest"
+golangci-lint: "2.2.2"
+goreleaser: "latest"
 # renovate: datasource=go packageName=gotest.tools/gotestsum
-- gotestsum: "1.12.3"
-- go:golang.org/x/tools/cmd/goimports: "latest"
-- shfmt: "latest"
+gotestsum: "1.12.3"
+go:golang.org/x/tools/cmd/goimports: "latest"
+shfmt: "latest"
 {{- end }}
 [alias]
 dprint = "ubi:dprint/dprint"
 
-# Default versions of tools, to update these, set [tools.override]
 [tools]
-{{- range (fromYaml (stencil.Include "defaultVers")) }}
-{{- $key := index (keys .) 0 }}
-{{- $val := index . $key }}
-{{- if contains ":" $key }}
-{{- $key = quote $key }}
-{{- end }}
-{{ $key }} = "{{ $val }}"
-{{- end }}
+{{- $defaultTools := fromYaml (stencil.Include "defaultVers") }}
+{{- $mergedTools := extensions.Call "github.com/rgst-io/stencil-golang.Merge" $existingTools $defaultTools }}
+{{ toToml $mergedTools }}
 
 [tasks.build]
 description = "Build a binary for the current platform/architecture"

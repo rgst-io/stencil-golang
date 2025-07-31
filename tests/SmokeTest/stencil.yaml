@@ -1,0 +1,3 @@
+name: smoke-test
+arguments:
+  org: fake
