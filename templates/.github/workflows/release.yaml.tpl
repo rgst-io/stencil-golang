@@ -86,7 +86,7 @@ jobs:
         uses: fregante/setup-git-user@v2
       - name: Download syft (SBOM)
         {{- /* renovate: datasource=github-tags packageName=anchore/sbom-action */}}
-        uses: anchore/sbom-action/download-syft@v0.20.2
+        uses: anchore/sbom-action/download-syft@v0.20.6
 
       # Bumping logic
       - name: Get next version
