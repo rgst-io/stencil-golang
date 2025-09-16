@@ -41,7 +41,7 @@ jobs:
           fetch-tags: true
 			{{- if (eq (stencil.Arg "vcs") "github") -}}
 			{{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
-      - uses: jdx/mise-action@v2
+      - uses: jdx/mise-action@v3
 			{{- else if (eq (stencil.Arg "vcs") "forgejo") }}
       - uses: https://git.rgst.io/rgst-io/mise-action@v2
 			{{- end }}
