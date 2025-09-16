@@ -7,7 +7,7 @@
 - golangci-lint: "2.2.2"
 - goreleaser: "latest"
 # renovate: datasource=go packageName=gotest.tools/gotestsum
-- gotestsum: "1.12.3"
+- gotestsum: "1.13.0"
 - go:golang.org/x/tools/cmd/goimports: "latest"
 - shfmt: "latest"
 {{- end }}
