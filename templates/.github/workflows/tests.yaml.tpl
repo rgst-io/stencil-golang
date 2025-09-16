@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       {{- /* renovate: datasource=github-tags packageName=actions/checkout */}}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 			{{- if (eq (stencil.Arg "vcs") "github") -}}
 			{{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
       - uses: jdx/mise-action@v3
@@ -70,7 +70,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       {{- /* renovate: datasource=github-tags packageName=actions/checkout */}}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 			{{- if (eq (stencil.Arg "vcs") "github") -}}
 			{{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
       - uses: jdx/mise-action@v3
