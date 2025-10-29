@@ -1,16 +1,16 @@
-{{- /* TODO(jaredallard): Don't put this inside of this file */}}
-{{- define "defaultVers" }}
+{{- /* TODO(jaredallard): Don't put this inside of this file */ -}}
+{{- define "defaultVers" -}}
 - dprint: "latest"
 # renovate: datasource=github-tags depName=golang packageName=golang/go
-- golang: "1.24.5"
+- golang: "1.25.3"
 # renovate: datasource=github-tags depName=golangci-lint packageName=golangci/golangci-lint
-- golangci-lint: "2.4.0"
+- golangci-lint: "2.6.0"
 - goreleaser: "latest"
 # renovate: datasource=go packageName=gotest.tools/gotestsum
 - gotestsum: "1.13.0"
 - go:golang.org/x/tools/cmd/goimports: "latest"
 - shfmt: "latest"
-{{- end }}
+{{- end -}}
 [alias]
 dprint = "ubi:dprint/dprint"
 
