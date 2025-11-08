@@ -22,7 +22,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/google/go-github/v76/github"
+	"github.com/google/go-github/v78/github"
 	"github.com/jaredallard/vcs"
 	"github.com/jaredallard/vcs/token"
 	"go.rgst.io/stencil/v2/pkg/extensions/apiv1"
