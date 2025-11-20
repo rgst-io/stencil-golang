@@ -35,7 +35,7 @@ jobs:
 {{ file.Block "releaseSetup" }}
       ## <</Stencil::Block>>
       {{- /* renovate: datasource=github-tags packageName=actions/checkout */}}
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
           fetch-tags: true
