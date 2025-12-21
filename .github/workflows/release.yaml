@@ -34,7 +34,7 @@ jobs:
       ## <<Stencil::Block(releaseSetup)>>
 
       ## <</Stencil::Block>>
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
           fetch-tags: true
@@ -48,11 +48,11 @@ jobs:
         run: |
           echo "cache_dir=$(go env GOCACHE)" >> "$GITHUB_OUTPUT"
           echo "mod_cache_dir=$(go env GOMODCACHE)" >> "$GITHUB_OUTPUT"
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: ${{ steps.go.outputs.cache_dir }}
           key: ${{ github.workflow }}-${{ runner.os }}-go-build-cache-${{ hashFiles('**/go.sum') }}
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: ${{ steps.go.outputs.mod_cache_dir }}
           key: ${{ github.workflow }}-${{ runner.os }}-go-mod-cache-${{ hashFiles('go.sum') }}
@@ -69,7 +69,7 @@ jobs:
       - name: Set up git user
         uses: fregante/setup-git-user@v2
       - name: Download syft (SBOM)
-        uses: anchore/sbom-action/download-syft@v0.20.9
+        uses: anchore/sbom-action/download-syft@v0.20
 
       # Bumping logic
       - name: Get next version
