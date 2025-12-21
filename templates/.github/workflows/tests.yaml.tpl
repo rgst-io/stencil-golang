@@ -37,12 +37,12 @@ jobs:
           echo "cache_dir=$(go env GOCACHE)" >> "$GITHUB_OUTPUT"
           echo "mod_cache_dir=$(go env GOMODCACHE)" >> "$GITHUB_OUTPUT"
       {{- /* renovate: datasource=github-tags packageName=actions/cache */}}
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: {{ "${{" }} steps.go.outputs.cache_dir {{ "}}" }}
           key: {{ "${{" }} runner.os {{ "}}" }}-go-build-cache-{{ "${{" }} hashFiles('**/go.sum') {{ "}}" }}
       {{- /* renovate: datasource=github-tags packageName=actions/cache */}}
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: {{ "${{" }} steps.go.outputs.mod_cache_dir {{ "}}" }}
           key: {{ "${{" }} runner.os {{ "}}" }}-go-mod-cache-{{ "${{" }} hashFiles('go.sum') {{ "}}" }}
