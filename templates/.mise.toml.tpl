@@ -12,7 +12,7 @@
 - shfmt: "latest"
 {{- end -}}
 [tool_alias]
-dprint = "ubi:dprint/dprint"
+dprint = "github:dprint/dprint"
 
 # Default versions of tools, to update these, set [tools.override]
 [tools]
