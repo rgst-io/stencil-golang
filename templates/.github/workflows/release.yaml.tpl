@@ -35,16 +35,12 @@ jobs:
 {{ file.Block "releaseSetup" }}
       ## <</Stencil::Block>>
       {{- /* renovate: datasource=github-tags packageName=actions/checkout */}}
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
           fetch-tags: true
-			{{- if (eq (stencil.Arg "vcs") "github") -}}
 			{{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
       - uses: jdx/mise-action@v3
-			{{- else if (eq (stencil.Arg "vcs") "forgejo") }}
-      - uses: https://git.rgst.io/rgst-io/mise-action@v2
-			{{- end }}
         with:
           experimental: true
 				{{- if (eq (stencil.Arg "vcs") "forgejo") }}
@@ -61,12 +57,12 @@ jobs:
           echo "cache_dir=$(go env GOCACHE)" >> "$GITHUB_OUTPUT"
           echo "mod_cache_dir=$(go env GOMODCACHE)" >> "$GITHUB_OUTPUT"
       {{- /* renovate: datasource=github-tags packageName=actions/cache */}}
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: {{ "${{" }} steps.go.outputs.cache_dir {{ "}}" }}
           key: {{ "${{" }} github.workflow {{ "}}" }}-{{ "${{" }} runner.os {{ "}}" }}-go-build-cache-{{ "${{" }} hashFiles('**/go.sum') {{ "}}" }}
       {{- /* renovate: datasource=github-tags packageName=actions/cache */}}
-      - uses: actions/cache@v4
+      - uses: actions/cache@v5
         with:
           path: {{ "${{" }} steps.go.outputs.mod_cache_dir {{ "}}" }}
           key: {{ "${{" }} github.workflow {{ "}}" }}-{{ "${{" }} runner.os {{ "}}" }}-go-mod-cache-{{ "${{" }} hashFiles('go.sum') {{ "}}" }}
@@ -86,7 +82,7 @@ jobs:
         uses: fregante/setup-git-user@v2
       - name: Download syft (SBOM)
         {{- /* renovate: datasource=github-tags packageName=anchore/sbom-action */}}
-        uses: anchore/sbom-action/download-syft@v0.20.9
+        uses: anchore/sbom-action/download-syft@v0.20
 
       # Bumping logic
       - name: Get next version

@@ -5,6 +5,5 @@
     "golang.go",
     "timonwong.shellcheck",
     "redhat.vscode-yaml",
-    "foxundermoon.shell-format"
   ]
 }

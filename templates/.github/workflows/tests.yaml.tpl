@@ -18,13 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       {{- /* renovate: datasource=github-tags packageName=actions/checkout */}}
-      - uses: actions/checkout@v5
-			{{- if (eq (stencil.Arg "vcs") "github") -}}
+      - uses: actions/checkout@v6
 			{{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
       - uses: jdx/mise-action@v3
-			{{- else if (eq (stencil.Arg "vcs") "forgejo") }}
-      - uses: https://git.rgst.io/rgst-io/mise-action@v2
-			{{- end }}
         with:
           experimental: true
 				{{- if (eq (stencil.Arg "vcs") "forgejo") }}
@@ -70,13 +66,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       {{- /* renovate: datasource=github-tags packageName=actions/checkout */}}
-      - uses: actions/checkout@v5
-			{{- if (eq (stencil.Arg "vcs") "github") -}}
+      - uses: actions/checkout@v6
 			{{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
       - uses: jdx/mise-action@v3
-			{{- else if (eq (stencil.Arg "vcs") "forgejo") }}
-      - uses: https://git.rgst.io/rgst-io/mise-action@v2
-			{{- end }}
         with:
           experimental: true
 				{{- if (eq (stencil.Arg "vcs") "forgejo") }}
@@ -93,7 +85,7 @@ jobs:
         id: golangci_lint
       - name: golangci-lint
         {{- /* renovate: datasource=github-tags packageName=golangci/golangci-lint-action */}}
-        uses: golangci/golangci-lint-action@v8
+        uses: golangci/golangci-lint-action@v9
         with:
           version: v{{ "${{" }} steps.golangci_lint.outputs.version {{ "}}" }}
           args: --timeout=30m

@@ -17,7 +17,7 @@ jobs:
     name: go test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: jdx/mise-action@v3
         with:
           experimental: true
@@ -54,7 +54,7 @@ jobs:
     name: golangci-lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: jdx/mise-action@v3
         with:
           experimental: true
@@ -65,7 +65,7 @@ jobs:
           echo "version=$(mise current golangci-lint)" >> "$GITHUB_OUTPUT"
         id: golangci_lint
       - name: golangci-lint
-        uses: golangci/golangci-lint-action@v8
+        uses: golangci/golangci-lint-action@v9
         with:
           version: v${{ steps.golangci_lint.outputs.version }}
           args: --timeout=30m

@@ -2,17 +2,17 @@
 {{- define "defaultVers" -}}
 - dprint: "latest"
 # renovate: datasource=github-tags depName=golang packageName=golang/go
-- golang: "1.25.3"
+- golang: "1.25.5"
 # renovate: datasource=github-tags depName=golangci-lint packageName=golangci/golangci-lint
-- golangci-lint: "2.6.0"
+- golangci-lint: "2.7.2"
 - goreleaser: "latest"
 # renovate: datasource=go packageName=gotest.tools/gotestsum
 - gotestsum: "1.13.0"
 - go:golang.org/x/tools/cmd/goimports: "latest"
 - shfmt: "latest"
 {{- end -}}
-[alias]
-dprint = "ubi:dprint/dprint"
+[tool_alias]
+dprint = "github:dprint/dprint"
 
 # Default versions of tools, to update these, set [tools.override]
 [tools]
