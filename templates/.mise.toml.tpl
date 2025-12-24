@@ -17,12 +17,7 @@ dprint = "github:dprint/dprint"
 # Default versions of tools, to update these, set [tools.override]
 [tools]
 {{- range (fromYaml (stencil.Include "defaultVers")) }}
-{{- $key := index (keys .) 0 }}
-{{- $val := index . $key }}
-{{- if contains ":" $key }}
-{{- $key = quote $key }}
-{{- end }}
-{{ $key }} = "{{ $val }}"
+{{ . | toToml }}
 {{- end }}
 
 [tasks.build]
