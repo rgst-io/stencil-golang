@@ -1,5 +1,5 @@
 {
-  "go.lintTool": "golangci-lint",
+  "go.lintTool": "golangci-lint-v2",
   "go.formatTool": "goimports",
   "go.useLanguageServer": true,
   "files.trimTrailingWhitespace": true,
