@@ -3,7 +3,7 @@ module github.com/rgst-io/stencil-golang
 go 1.24.0
 
 require (
-	github.com/google/go-github/v80 v80.0.0
+	github.com/google/go-github/v82 v82.0.0
 	github.com/jaredallard/vcs v1.0.1
 	go.rgst.io/stencil/v2 v2.7.0
 	gotest.tools/v3 v3.5.2
@@ -21,7 +21,7 @@ require (
 	github.com/go-logfmt/logfmt v0.6.0 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/google/go-cmp v0.7.0 // indirect
-	github.com/google/go-querystring v1.1.0 // indirect
+	github.com/google/go-querystring v1.2.0 // indirect
 	github.com/hashicorp/go-hclog v1.6.3 // indirect
 	github.com/hashicorp/go-plugin v1.6.3 // indirect
 	github.com/hashicorp/yamux v0.1.2 // indirect
