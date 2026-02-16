@@ -3,7 +3,7 @@ module github.com/rgst-io/stencil-golang
 go 1.25
 
 require (
-	github.com/google/go-github/v82 v82.0.0
+	github.com/google/go-github/v83 v83.0.0
 	github.com/jaredallard/vcs v1.0.1
 	go.rgst.io/stencil/v2 v2.13.0
 	gotest.tools/v3 v3.5.2
