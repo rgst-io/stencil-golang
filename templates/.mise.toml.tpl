@@ -2,9 +2,9 @@
 {{- define "defaultVers" -}}
 - dprint: "latest"
 # renovate: datasource=github-tags depName=golang packageName=golang/go
-- golang: "1.25.5"
+- golang: "1.26.0"
 # renovate: datasource=github-tags depName=golangci-lint packageName=golangci/golangci-lint
-- golangci-lint: "2.7.2"
+- golangci-lint: "2.9.0"
 - goreleaser: "latest"
 # renovate: datasource=go packageName=gotest.tools/gotestsum
 - gotestsum: "1.13.0"
