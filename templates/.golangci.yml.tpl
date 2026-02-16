@@ -1,3 +1,5 @@
+{{- $license := (stencil.Arg "license") -}}
+{{- $licenseObj := (dict "Name" $license) -}}
 # yaml-language-server: $schema=https://json.schemastore.org/golangci-lint
 
 version: "2"
@@ -16,6 +18,18 @@ linters:
         - opinionated
         - performance
         - style
+    goheader:
+      template: |-
+      {{- if not (eq $license "Proprietary") }}
+        Copyright (C) {{ "{{ YEAR }}" }} {{ .Config.Name }} contributors
+      {{- else }}
+        Copyright (C) {{ "{{ YEAR }}" }} {{ stencil.Arg "copyrightHolder" }}. All rights reserved.
+      {{- end }}
+{{ stencil.Include (list "code-snippets" "copyright" $license | join ".") $licenseObj | indent 8 }}
+      {{- if not (eq $license "Proprietary") }}
+
+        SPDX-License-Identifier: {{ $license }}
+      {{- end }}
     lll:
       line-length: 140
 

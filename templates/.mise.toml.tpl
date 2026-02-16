@@ -8,7 +8,6 @@
 - goreleaser: "latest"
 # renovate: datasource=go packageName=gotest.tools/gotestsum
 - gotestsum: "1.13.0"
-- go:golang.org/x/tools/cmd/goimports: "latest"
 - shfmt: "latest"
 {{- end -}}
 [tool_alias]
@@ -35,8 +34,7 @@ alias = "format"
 description = "Format code"
 run = [
 	"go mod tidy",
-	"gofmt -s -w .",
-	"goimports -w .",
+	"golangci-lint fmt",
 	"shfmt -w .",
 	"dprint fmt '**/*.{json,yaml,yml,md,jsonschema.json}'",
 ]
