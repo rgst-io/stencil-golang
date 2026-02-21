@@ -100,7 +100,7 @@ jobs:
           mise run changelog-release
       - name: Create release artifacts and Github Release
         {{- /* renovate: datasource=github-tags packageName=goreleaser/goreleaser-action */}}
-        uses: goreleaser/goreleaser-action@v6
+        uses: goreleaser/goreleaser-action@v7
         with:
           distribution: goreleaser
           version: v{{ "${{" }} steps.goreleaser.outputs.version {{ "}}" }}
