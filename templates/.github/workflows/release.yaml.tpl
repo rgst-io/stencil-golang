@@ -112,7 +112,7 @@ jobs:
           ## <</Stencil::Block>>
 {{- if not (stencil.Arg "library") }}
       {{- /* renovate: datasource=github-tags packageName=actions/attest-build-provenance */}}
-      - uses: actions/attest-build-provenance@v3
+      - uses: actions/attest-build-provenance@v4
         with:
           # We attest all generated _archives_ because those are what we
           # upload to Github Releases.
