@@ -82,8 +82,8 @@ release:
 
 {{- if (eq (stencil.Arg "vcs") "forgejo") }}
 gitea_urls:
-  api: https://{{ stenci.Arg "vcs_host" }}/api/v1
-  download: https://{{ stenci.Arg "vcs_host" }}
+  api: https://{{ stencil.Arg "vcs_host" }}/api/v1
+  download: https://{{ stencil.Arg "vcs_host" }}
 {{- end }}
 
 ## <<Stencil::Block(extraReleaseOpts)>>

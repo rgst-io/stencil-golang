@@ -33,7 +33,7 @@ jobs:
       - uses: actions/checkout@v6
 			{{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
       - uses: jdx/mise-action@v3
-        with:
+        with: {{ eq (stencil.Arg "vcs") "github" | ternary "{}" "" }}
 				{{- if (eq (stencil.Arg "vcs") "forgejo") }}
           github_token: {{ "${{ env.REAL_GITHUB_TOKEN }}"}}
 				{{- end }}
@@ -78,7 +78,7 @@ jobs:
       - uses: actions/checkout@v6
 			{{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
       - uses: jdx/mise-action@v3
-        with:
+        with: {{ eq (stencil.Arg "vcs") "github" | ternary "{}" "" }}
 				{{- if (eq (stencil.Arg "vcs") "forgejo") }}
           github_token: {{ "${{ env.REAL_GITHUB_TOKEN }}"}}
 				{{- end }}

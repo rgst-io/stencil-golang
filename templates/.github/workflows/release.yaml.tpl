@@ -53,7 +53,7 @@ jobs:
           fetch-tags: true
       {{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
       - uses: jdx/mise-action@v3
-        with:
+        with: {{ eq (stencil.Arg "vcs") "github" | ternary "{}" "" }}
         {{- if (eq (stencil.Arg "vcs") "forgejo") }}
           github_token: {{ "${{ env.REAL_GITHUB_TOKEN }}"}}
         {{- end }}
@@ -104,7 +104,7 @@ jobs:
         run: |-
           git tag -a "{{ "${{ steps.next_version.outputs.version }}" }}" -m "Release {{ "${{ steps.next_version.outputs.version }}" }}"
       - name: Generate CHANGELOG
-        env:
+        env: {{ eq (stencil.Arg "vcs") "github" | ternary "{}" "" }}
 {{- if (eq (stencil.Arg "vcs") "forgejo") }}
           GITEA_TOKEN: {{ "${{ github.token }}" }}
 {{- end }}
