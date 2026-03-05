@@ -4,6 +4,8 @@ type: templates,extension
 postRunCommand:
   - name: mise install
     command: mise install
+  - name: mise lock
+    command: mise lock
   - name: mise run fmt
     command: mise run fmt
 arguments:

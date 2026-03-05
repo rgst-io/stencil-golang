@@ -9,8 +9,20 @@ permissions:
   contents: read
 
 concurrency:
-  group: {{ "${{" }} github.workflow {{ "}}" }}-{{ "${{" }} github.head_ref {{ "}}" }}
+  group: {{ "${{ github.workflow }}-${{ github.head_ref }}" }}
   cancel-in-progress: true
+
+{{- if (eq (stencil.Arg "vcs") "forgejo") }}
+
+env:
+	# When on VCS providers other than Github (e.g., forgejo), this is
+	# used to reflect a Github Token that actually has access to Github,
+	# unlike the token provided by act.
+	#
+	## <<Stencil::Block(forgejoGithubToken)>>
+	REAL_GITHUB_TOKEN: {{ (file.Block "forgejoGithubToken" | default "REAL_GITHUB_TOKEN: ''" | fromYaml).REAL_GITHUB_TOKEN | default "${{ github.token }}" }}
+	## <</Stencil::Block>>
+{{- end }}
 
 jobs:
   gotest:
@@ -22,15 +34,9 @@ jobs:
 			{{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
       - uses: jdx/mise-action@v3
         with:
-          experimental: true
 				{{- if (eq (stencil.Arg "vcs") "forgejo") }}
-          ## <<Stencil::Block(forgejoGithubToken)>>
-          github_token: {{ (file.Block "forgejoGithubToken" | default "github_token: ''" | fromYaml).github_token | default "${{ github.token }}" }}
-          ## <</Stencil::Block>>
-				{{- else }}
-        env:
-          GH_TOKEN: {{ "${{" }} github.token {{ "}}" }}
-        {{- end }}
+          github_token: {{ "${{ env.REAL_GITHUB_TOKEN }}"}}
+				{{- end }}
       - name: Get Go directories
         id: go
         run: |
@@ -49,10 +55,12 @@ jobs:
       - name: Download dependencies
         run: go mod download
       - name: Run go test
-        env:
-          GITHUB_TOKEN: {{ "${{" }} secrets.GITHUB_TOKEN {{ "}}" }}
-        run: |
-          gotestsum -- -coverprofile=cover.out ./...
+        env: {{ empty (file.Block "gotestEnvVars") | ternary "{}" "" }}
+					## <<Stencil::Block(gotestEnvVars)>>
+{{ file.Block "gotestEnvVars" }}
+					## <</Stencil::Block>>
+        run: gotestsum -- -coverprofile=cover.out ./...
+			{{- if (eq (stencil.Arg "vcs") "github") }}
       - name: Upload test coverage
         {{- /* renovate: datasource=github-tags packageName=codecov/codecov-action */}}
         uses: codecov/codecov-action@v5
@@ -60,6 +68,7 @@ jobs:
           token: {{ "${{" }} secrets.CODECOV_TOKEN {{ "}}" }}
           files: ./cover.out
           fail_ci_if_error: true
+			{{- end }}
 
   golangci-lint:
     name: golangci-lint
@@ -70,15 +79,9 @@ jobs:
 			{{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
       - uses: jdx/mise-action@v3
         with:
-          experimental: true
 				{{- if (eq (stencil.Arg "vcs") "forgejo") }}
-          ## <<Stencil::Block(forgejoGithubToken)>>
-          github_token: {{ (file.Block "forgejoGithubToken" | default "github_token: ''" | fromYaml).github_token | default "${{ github.token }}" }}
-          ## <</Stencil::Block>>
-				{{- else }}
-        env:
-          GH_TOKEN: {{ "${{" }} github.token {{ "}}" }}
-        {{- end }}
+          github_token: {{ "${{ env.REAL_GITHUB_TOKEN }}"}}
+				{{- end }}
       - name: Retrieve golangci-lint version
         run: |
           echo "version=$(mise current golangci-lint)" >> "$GITHUB_OUTPUT"

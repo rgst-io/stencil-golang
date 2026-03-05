@@ -24,8 +24,20 @@ permissions:
   attestations: write
 
 concurrency:
-  group: {{ "${{" }} github.workflow {{ "}}" }}-{{ "${{" }} github.head_ref {{ "}}" }}
+  group: {{ "${{ github.workflow }}-${{ github.head_ref }}" }}
   cancel-in-progress: true
+
+{{- if (eq (stencil.Arg "vcs") "forgejo") }}
+
+env:
+  # When on VCS providers other than Github (e.g., forgejo), this is
+  # used to reflect a Github Token that actually has access to Github,
+  # unlike the token provided by act.
+  #
+  ## <<Stencil::Block(forgejoGithubToken)>>
+  REAL_GITHUB_TOKEN: {{ (file.Block "forgejoGithubToken" | default "REAL_GITHUB_TOKEN: ''" | fromYaml).REAL_GITHUB_TOKEN | default "${{ github.token }}" }}
+  ## <</Stencil::Block>>
+{{- end }}
 
 jobs:
   release:
@@ -39,17 +51,11 @@ jobs:
         with:
           fetch-depth: 0
           fetch-tags: true
-			{{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
+      {{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
       - uses: jdx/mise-action@v3
         with:
-          experimental: true
-				{{- if (eq (stencil.Arg "vcs") "forgejo") }}
-          ## <<Stencil::Block(forgejoGithubToken)>>
-          github_token: {{ (file.Block "forgejoGithubToken" | default "github_token: ''" | fromYaml).github_token | default "${{ github.token }}" }}
-          ## <</Stencil::Block>>
-				{{- else }}
-        env:
-          GH_TOKEN: {{ "${{" }} github.token {{ "}}" }}
+        {{- if (eq (stencil.Arg "vcs") "forgejo") }}
+          github_token: {{ "${{ env.REAL_GITHUB_TOKEN }}"}}
         {{- end }}
       - name: Get Go directories
         id: go
@@ -75,14 +81,16 @@ jobs:
         uses: docker/login-action@v4
         with:
           registry: ghcr.io
-          username: {{ "${{" }} github.actor {{ "}}" }}
-          password: {{ "${{" }} secrets.GITHUB_TOKEN {{ "}}" }}
+          username: {{ "${{ github.actor }}" }}
+          password: {{ eq (stencil.Arg "vcs") "forgejo" | ternary "${{ env.REAL_GITHUB_TOKEN }}" "${{ secrets.GITHUB_TOKEN }}" }}
       - name: Set up git user
         {{- /* renovate: datasource=github-tags packageName=fregante/setup-git-user */}}
         uses: fregante/setup-git-user@v2
+{{- if (eq (stencil.Arg "vcs") "github") }}
       - name: Download syft (SBOM)
         {{- /* renovate: datasource=github-tags packageName=anchore/sbom-action */}}
         uses: anchore/sbom-action/download-syft@v0
+{{- end }}
 
       # Bumping logic
       - name: Get next version
@@ -96,6 +104,10 @@ jobs:
         run: |-
           git tag -a "{{ "${{ steps.next_version.outputs.version }}" }}" -m "Release {{ "${{ steps.next_version.outputs.version }}" }}"
       - name: Generate CHANGELOG
+        env:
+{{- if (eq (stencil.Arg "vcs") "forgejo") }}
+          GITEA_TOKEN: {{ "${{ github.token }}" }}
+{{- end }}
         run: |-
           mise run changelog-release
       - name: Create release artifacts and Github Release
@@ -106,10 +118,11 @@ jobs:
           version: v{{ "${{" }} steps.goreleaser.outputs.version {{ "}}" }}
           args: release --release-notes CHANGELOG.md --clean
         env:
-          GITHUB_TOKEN: {{ "${{ secrets.GITHUB_TOKEN }}" }}
+          GITHUB_TOKEN: {{ eq (stencil.Arg "vcs") "forgejo" | ternary "${{ env.REAL_GITHUB_TOKEN }}" "${{ secrets.GITHUB_TOKEN }}" }}
           ## <<Stencil::Block(goreleaseEnvVars)>>
 {{ file.Block "goreleaseEnvVars" }}
           ## <</Stencil::Block>>
+{{- if (eq (stencil.Arg "vcs") "github") }}
 {{- if not (stencil.Arg "library") }}
       {{- /* renovate: datasource=github-tags packageName=actions/attest-build-provenance */}}
       - uses: actions/attest-build-provenance@v4
@@ -117,4 +130,5 @@ jobs:
           # We attest all generated _archives_ because those are what we
           # upload to Github Releases.
           subject-path: dist/{{ .Config.Name }}_*.*, dist/checksums.txt
+{{- end }}
 {{- end }}

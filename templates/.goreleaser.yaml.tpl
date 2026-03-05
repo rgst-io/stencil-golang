@@ -44,42 +44,30 @@ builds:
 {{- end }}
 {{- end }}
 {{- if and (not (stencil.Arg "library")) (stencil.Exists "Dockerfile") }}
-dockers:
-  # amd64
-  - use: buildx
-    build_flag_templates:
-      - --platform=linux/amd64
-      - --label=org.opencontainers.image.title={{ "{{ .ProjectName }}" }}
-      - --label=org.opencontainers.image.description={{ "{{ .ProjectName }}" }}
-      - --label=org.opencontainers.image.url=https://{{ stencil.Arg "vcs_host" }}/{{ $org }}/{{ "{{ .ProjectName }}" }}
-      - --label=org.opencontainers.image.source=https://{{ stencil.Arg "vcs_host" }}/{{ $org }}/{{ "{{ .ProjectName }}" }}
-      - --label=org.opencontainers.image.version={{ "{{ .Version }}" }}
-      - --label=org.opencontainers.image.created={{ "{{ time \"2006-01-02T15:04:05Z07:00\" }}" }}
-      - --label=org.opencontainers.image.revision={{ "{{ .FullCommit }}" }}
-      - --label=org.opencontainers.image.licenses={{ stencil.Arg "license" }}
-    image_templates:
-      - "ghcr.io/{{ $org }}/{{ "{{ .ProjectName }}" }}:{{ "{{ .Version }}" }}-amd64"
-  # arm64
-  - use: buildx
-    goos: linux
-    goarch: arm64
-    build_flag_templates:
-      - --platform=linux/arm64
-      - --label=org.opencontainers.image.title={{ "{{ .ProjectName }}" }}
-      - --label=org.opencontainers.image.description={{ "{{ .ProjectName }}" }}
-      - --label=org.opencontainers.image.url=https://{{ stencil.Arg "vcs_host" }}/{{ $org }}/{{ "{{ .ProjectName }}" }}
-      - --label=org.opencontainers.image.source=https://{{ stencil.Arg "vcs_host" }}/{{ $org }}/{{ "{{ .ProjectName }}" }}
-      - --label=org.opencontainers.image.version={{ "{{ .Version }}" }}
-      - --label=org.opencontainers.image.created={{ "{{ time \"2006-01-02T15:04:05Z07:00\" }}" }}
-      - --label=org.opencontainers.image.revision={{ "{{ .FullCommit }}" }}
-      - --label=org.opencontainers.image.licenses={{ stencil.Arg "license" }}
-    image_templates:
-      - "ghcr.io/{{ $org }}/{{ "{{ .ProjectName }}" }}:{{ "{{ .Version }}" }}-arm64"
-docker_manifests:
-  - name_template: "ghcr.io/{{ $org }}/{{ "{{ .ProjectName }}" }}:{{ "{{ .Version }}" }}"
-    image_templates:
-      - "ghcr.io/{{ $org }}/{{ "{{ .ProjectName }}" }}:{{ "{{ .Version }}" }}-arm64"
-      - "ghcr.io/{{ $org }}/{{ "{{ .ProjectName }}" }}:{{ "{{ .Version }}" }}-amd64"
+dockers_v2:
+  - images:
+    ## <<Stencil::Block(extraReleaseOpts)>>
+    {{- $block := file.Block "extraReleaseOpts" }}
+    {{- if $block }}
+{{ $block }}
+    {{- else }}
+    {{- if (eq (stencil.Arg "vcs") "forgejo") }}
+    - {{ stencil.Arg "vcs_host" }}/{{ $org }}/{{ "{{ .ProjectName }}" }}
+    {{- end }}
+    - ghcr.io/{{ $org }}/{{ "{{ .ProjectName }}" }}
+    {{- end }}
+    ## <</Stencil::Block>>
+    labels:
+      "org.opencontainers.image.title": {{ "{{ .ProjectName }}" | quote }}
+      "org.opencontainers.image.description": {{ "{{ .ProjectName }}" | quote }}
+      "org.opencontainers.image.source": {{ "{{ .GitURL }}" | quote }}
+      "org.opencontainers.image.version": {{ "{{ .Version }}" | quote }}
+      "org.opencontainers.image.created": {{ "{{ .Date }}" | quote }}
+      "org.opencontainers.image.revision": {{ "{{ .FullCommit }}" | quote }}
+      "org.opencontainers.image.licenses": {{ stencil.Arg "license" | quote }}
+    platforms:
+    - linux/amd64
+    - linux/arm64
 {{- end }}
 checksum:
   name_template: "checksums.txt"
@@ -91,6 +79,12 @@ release:
   prerelease: "auto"
   footer: |-
     **Full Changelog**: https://{{ stencil.Arg "vcs_host" }}/{{ $org }}/{{ .Config.Name }}/compare/{{ "{{ .PreviousTag }}" }}...{{ "{{ .Tag }}" }}
+
+{{- if (eq (stencil.Arg "vcs") "forgejo") }}
+gitea_urls:
+  api: https://{{ stenci.Arg "vcs_host" }}/api/v1
+  download: https://{{ stenci.Arg "vcs_host" }}
+{{- end }}
 
 ## <<Stencil::Block(extraReleaseOpts)>>
 {{ file.Block "extraReleaseOpts" }}
