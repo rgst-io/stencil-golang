@@ -72,7 +72,7 @@ jobs:
         id: goreleaser
       - name: Login to GitHub Container Registry
         {{- /* renovate: datasource=github-tags packageName=docker/login-action */}}
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           registry: ghcr.io
           username: {{ "${{" }} github.actor {{ "}}" }}
