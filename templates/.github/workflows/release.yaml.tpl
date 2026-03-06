@@ -76,6 +76,15 @@ jobs:
         run: |-
           echo "version=$(mise current goreleaser)" >> "$GITHUB_OUTPUT"
         id: goreleaser
+{{- if (eq (stencil.Arg "vcs") "forgejo") }}
+      - name: Login to GitHub Container Registry
+        {{- /* renovate: datasource=github-tags packageName=docker/login-action */}}
+        uses: docker/login-action@v4
+        with:
+          registry: {{ stencil.Arg "vcs_host" }}
+          username: {{ "${{ github.actor }}" }}
+          password: {{ "${{ secrets.GITHUB_TOKEN }}" }}
+{{- end }}
       - name: Login to GitHub Container Registry
         {{- /* renovate: datasource=github-tags packageName=docker/login-action */}}
         uses: docker/login-action@v4
