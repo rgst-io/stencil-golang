@@ -37,6 +37,14 @@ env:
   ## <<Stencil::Block(forgejoGithubToken)>>
   REAL_GITHUB_TOKEN: {{ (file.Block "forgejoGithubToken" | default "REAL_GITHUB_TOKEN: ''" | fromYaml).REAL_GITHUB_TOKEN | default "${{ github.token }}" }}
   ## <</Stencil::Block>>
+
+  # Forgejo's Action token does not have permissions to write to the
+  # package registry. For more information, see:
+  # https://codeberg.org/forgejo/forgejo/issues/6198
+  #
+  ## <<Stencil::Block(forgejoPackageToken)>>
+  FORGEJO_PACKAGE_TOKEN: {{ (file.Block "forgejoPackageToken" | default "FORGEJO_PACKAGE_TOKEN: ''" | fromYaml).FORGEJO_PACKAGE_TOKEN | default "${{ github.token }}" }}
+  ## <</Stencil::Block>>
 {{- end }}
 
 jobs:
@@ -83,7 +91,7 @@ jobs:
         with:
           registry: {{ stencil.Arg "vcs_host" }}
           username: {{ "${{ github.actor }}" }}
-          password: {{ "${{ secrets.GITHUB_TOKEN }}" }}
+          password: {{ "${{ env.FORGEJO_PACKAGE_TOKEN }}" }}
 {{- end }}
       - name: Login to GitHub Container Registry
         {{- /* renovate: datasource=github-tags packageName=docker/login-action */}}
