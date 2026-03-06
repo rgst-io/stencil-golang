@@ -66,6 +66,9 @@ linters:
       # We allow error shadowing
       - path: '(.+)\.go$'
         text: 'declaration of "err" shadows declaration at'
+      # Overly disruptive rule
+      - path: '(.+)\.go$'
+        text: 'var-naming: avoid package names that conflict with Go standard library package names'
       # Exclude some linters from running on tests files.
       - path: _test\.go
         linters:
