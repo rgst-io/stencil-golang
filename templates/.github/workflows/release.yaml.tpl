@@ -111,14 +111,17 @@ jobs:
         run: |-
           mise run changelog-release
       - name: Create release artifacts and Github Release
-        {{- /* renovate: datasource=github-tags packageName=goreleaser/goreleaser-action */}}
-        uses: goreleaser/goreleaser-action@v7
-        with:
-          distribution: goreleaser
-          version: v{{ "${{" }} steps.goreleaser.outputs.version {{ "}}" }}
-          args: release --release-notes CHANGELOG.md --clean
+        run: |-
+          {{- if (eq (stencil.Arg "vcs") "forgejo") }}
+          # forgejo's actions implementation sets this automatically,
+          # which we do not want.
+          unset GITHUB_TOKEN
+          {{- end }}
+          goreleaser release --release-notes CHANGELOG.md --clean
         env:
-          GITHUB_TOKEN: {{ eq (stencil.Arg "vcs") "forgejo" | ternary "${{ env.REAL_GITHUB_TOKEN }}" "${{ secrets.GITHUB_TOKEN }}" }}
+          {{- if (eq (stencil.Arg "vcs") "github") }}
+          GITHUB_TOKEN: {{ "${{ secrets.GITHUB_TOKEN }}" }}
+          {{- end }}
           ## <<Stencil::Block(goreleaseEnvVars)>>
 {{ file.Block "goreleaseEnvVars" }}
           ## <</Stencil::Block>>

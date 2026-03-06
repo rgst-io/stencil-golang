@@ -76,11 +76,18 @@ snapshot:
 changelog:
   use: git
 release:
+  {{- if (eq (stencil.Arg "vcs") "forgejo") }}
+  gitea:
+    owner: {{ $org }}
+    name: {{ .Config.Name }}
+  {{- end }}
+
   prerelease: "auto"
   footer: |-
     **Full Changelog**: https://{{ stencil.Arg "vcs_host" }}/{{ $org }}/{{ .Config.Name }}/compare/{{ "{{ .PreviousTag }}" }}...{{ "{{ .Tag }}" }}
 
 {{- if (eq (stencil.Arg "vcs") "forgejo") }}
+
 gitea_urls:
   api: https://{{ stencil.Arg "vcs_host" }}/api/v1
   download: https://{{ stencil.Arg "vcs_host" }}
