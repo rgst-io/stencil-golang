@@ -121,6 +121,8 @@ jobs:
         env:
           {{- if (eq (stencil.Arg "vcs") "github") }}
           GITHUB_TOKEN: {{ "${{ secrets.GITHUB_TOKEN }}" }}
+          {{- else if (eq (stencil.Arg "vcs") "forgejo") }}
+          GITEA_TOKEN: {{ "${{ secrets.GITHUB_TOKEN }}" }}
           {{- end }}
           ## <<Stencil::Block(goreleaseEnvVars)>>
 {{ file.Block "goreleaseEnvVars" }}
