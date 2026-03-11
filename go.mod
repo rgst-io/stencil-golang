@@ -5,7 +5,7 @@ go 1.25.0
 require (
 	github.com/google/go-github/v82 v82.0.0
 	github.com/jaredallard/vcs v1.0.1
-	go.rgst.io/stencil/v2 v2.14.0
+	go.rgst.io/stencil/v2 v2.15.2
 	gotest.tools/v3 v3.5.2
 )
 
