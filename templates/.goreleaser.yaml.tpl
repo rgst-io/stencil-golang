@@ -11,6 +11,8 @@ builds:
 {{- else }}
 {{- range $cmd := (stencil.Arg "commands" | default (list .Config.Name)) }}
   - main: ./cmd/{{ $cmd }}
+    id: {{ $cmd }}
+    binary: {{ $cmd }}
     flags:
       - -trimpath
     ldflags:
