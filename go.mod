@@ -6,7 +6,7 @@ require (
 	github.com/google/go-github/v84 v84.0.0
 	go.rgst.io/jaredallard/slogext/v2 v2.0.0
 	go.rgst.io/jaredallard/vcs/v2 v2.0.0
-	go.rgst.io/stencil/v2 v2.15.2
+	go.rgst.io/stencil/v2 v2.15.3
 	gotest.tools/v3 v3.5.2
 )
 
@@ -46,11 +46,11 @@ require (
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
 	go.rgst.io/jaredallard/cmdexec/v2 v2.0.0 // indirect
 	golang.org/x/exp v0.0.0-20260312153236-7ab1446f8b90 // indirect
-	golang.org/x/net v0.51.0 // indirect
+	golang.org/x/net v0.52.0 // indirect
 	golang.org/x/sync v0.20.0 // indirect
 	golang.org/x/sys v0.42.0 // indirect
-	golang.org/x/text v0.34.0 // indirect
+	golang.org/x/text v0.35.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260226221140-a57be14db171 // indirect
-	google.golang.org/grpc v1.79.1 // indirect
+	google.golang.org/grpc v1.79.2 // indirect
 	google.golang.org/protobuf v1.36.11 // indirect
 )
