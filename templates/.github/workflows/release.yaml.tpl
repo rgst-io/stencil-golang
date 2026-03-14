@@ -60,7 +60,7 @@ jobs:
           fetch-depth: 0
           fetch-tags: true
       {{- /* renovate: datasource=github-tags packageName=jdx/mise-action */}}
-      - uses: jdx/mise-action@v3
+      - uses: jdx/mise-action@v4
         with: {{ eq (stencil.Arg "vcs") "github" | ternary "{}" "" }}
         {{- if (eq (stencil.Arg "vcs") "forgejo") }}
           github_token: {{ "${{ env.REAL_GITHUB_TOKEN }}"}}
