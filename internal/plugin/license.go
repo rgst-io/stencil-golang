@@ -20,6 +20,7 @@ package plugin
 import (
 	"fmt"
 
+	"github.com/google/go-github/v84/github"
 	"go.rgst.io/stencil/v2/pkg/extensions/apiv1"
 )
 
@@ -41,7 +42,7 @@ func (i *Instance) GetLicense(t *apiv1.TemplateFunctionExec) (any, error) {
 // GetLicenses returns a list of commonly used licenses from Github's
 // License API.
 func (i *Instance) GetLicenses(_ *apiv1.TemplateFunctionExec) (any, error) {
-	licenses, _, err := i.gh.Licenses.List(i.ctx)
+	licenses, _, err := i.gh.Licenses.List(i.ctx, &github.ListLicensesOptions{})
 	if err != nil {
 		return nil, err
 	}
