@@ -23,8 +23,8 @@ import (
 	"fmt"
 
 	"github.com/google/go-github/v84/github"
-	"github.com/jaredallard/vcs"
-	"github.com/jaredallard/vcs/token"
+	"go.rgst.io/jaredallard/vcs/v2"
+	"go.rgst.io/jaredallard/vcs/v2/token"
 	"go.rgst.io/stencil/v2/pkg/extensions/apiv1"
 )
 
