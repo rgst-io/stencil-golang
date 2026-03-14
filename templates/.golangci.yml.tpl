@@ -21,9 +21,9 @@ linters:
     goheader:
       template: |-
       {{- if not (eq $license "Proprietary") }}
-        Copyright (C) {{ "{{ YEAR }}" }} {{ .Config.Name }} contributors
+        Copyright (C) {{ "{{ MOD_YEAR }}" }} {{ .Config.Name }} contributors
       {{- else }}
-        Copyright (C) {{ "{{ YEAR }}" }} {{ stencil.Arg "copyrightHolder" }}. All rights reserved.
+        Copyright (C) {{ "{{ MOD_YEAR }}" }} {{ stencil.Arg "copyrightHolder" }}. All rights reserved.
       {{- end }}
 {{ stencil.Include (list "code-snippets" "copyright" $license | join ".") $licenseObj | indent 8 }}
       {{- if not (eq $license "Proprietary") }}
@@ -78,6 +78,11 @@ linters:
           - gocyclo
           - goheader # Don't require license headers in test files.
           - gosec
+      # Checking return of Close() is optional.
+      - path: '(.+)\.go$'
+        text: 'Error return value of `(.*\.Close|fmt\.F.*)` is not checked'
+      - path: '(.+)\.go$'
+        text: "G104: Errors unhandled" # Duplicates errcheck.
 
 # formatter settings
 formatters:

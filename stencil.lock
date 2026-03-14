@@ -1,4 +1,4 @@
-version: 2.13.0
+version: 2.15.2
 modules:
     - name: github.com/rgst-io/stencil-golang
       url: ./

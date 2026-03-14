@@ -4,6 +4,7 @@ go 1.25.0
 
 require (
 	github.com/google/go-github/v82 v82.0.0
+	github.com/jaredallard/slogext v1.0.1
 	github.com/jaredallard/vcs v1.0.1
 	go.rgst.io/stencil/v2 v2.15.2
 	gotest.tools/v3 v3.5.2
@@ -28,7 +29,6 @@ require (
 	github.com/hashicorp/go-plugin v1.7.0 // indirect
 	github.com/hashicorp/yamux v0.1.2 // indirect
 	github.com/jaredallard/cmdexec v1.4.1 // indirect
-	github.com/jaredallard/slogext v1.0.1 // indirect
 	github.com/lucasb-eyer/go-colorful v1.3.0 // indirect
 	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
