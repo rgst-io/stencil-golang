@@ -25,40 +25,29 @@ builds:
     env:
       - CGO_ENABLED=0
     goarch:
-      - amd64
-      - arm64
-      {{- $extraArchBlockName := printf "%s%s" $cmd (title "extraArch") }}
-      ## <<Stencil::Block({{ $extraArchBlockName }})>>
-{{ file.Block $extraArchBlockName }}
-      ## <</Stencil::Block>>
+{{ stencil.Arg "goarch" | toYaml | indent 6 }}
     goos:
-      - linux
-      - darwin
-      - windows
-      {{- $extraOSBlockName := printf "%s%s" $cmd (title "extraOS") }}
-      ## <<Stencil::Block({{ $extraOSBlockName }})>>
-{{ file.Block $extraOSBlockName }}
-      ## <</Stencil::Block>>
+{{ stencil.Arg "goos" | toYaml | indent 6 }}
+{{- if and (has "windows" (stencil.Arg "goos")) (has "arm" (stencil.Arg "goarch")) }}
     ignore:
       - goos: windows
         goarch: arm
+{{- end }}
     mod_timestamp: "{{ "{{" }} .CommitTimestamp {{ "}}" }}"
 {{- end }}
 {{- end }}
-{{- if and (not (stencil.Arg "library")) (stencil.Exists "Dockerfile") }}
+{{- if not (module.Call "ReleaseFormatEnabled" "binary") }}
+archives:
+- formats:
+  - none
+{{- end }}
+{{- if (module.Call "ReleaseFormatEnabled" "docker") }}
 dockers_v2:
   - images:
-    ## <<Stencil::Block(extraReleaseOpts)>>
-    {{- $block := file.Block "extraReleaseOpts" }}
-    {{- if $block }}
-{{ $block }}
-    {{- else }}
-    {{- if (eq (stencil.Arg "vcs") "forgejo") }}
+    {{- if module.Call "ReleaseTargetEnabled" "vcs" }}
     - {{ stencil.Arg "vcs_host" }}/{{ $org }}/{{ "{{ .ProjectName }}" }}
     {{- end }}
     - ghcr.io/{{ $org }}/{{ "{{ .ProjectName }}" }}
-    {{- end }}
-    ## <</Stencil::Block>>
     labels:
       "org.opencontainers.image.title": {{ "{{ .ProjectName }}" | quote }}
       "org.opencontainers.image.description": {{ "{{ .ProjectName }}" | quote }}
@@ -68,8 +57,9 @@ dockers_v2:
       "org.opencontainers.image.revision": {{ "{{ .FullCommit }}" | quote }}
       "org.opencontainers.image.licenses": {{ stencil.Arg "license" | quote }}
     platforms:
-    - linux/amd64
-    - linux/arm64
+{{- range $arch := (stencil.Arg "goarch") }}
+    - linux/{{ $arch }}
+{{- end }}
 {{- end }}
 checksum:
   name_template: "checksums.txt"
@@ -82,8 +72,8 @@ release:
   gitea:
     owner: {{ $org }}
     name: {{ .Config.Name }}
-  {{- end }}
 
+  {{- end }}
   prerelease: "auto"
   footer: |-
     **Full Changelog**: https://{{ stencil.Arg "vcs_host" }}/{{ $org }}/{{ .Config.Name }}/compare/{{ "{{ .PreviousTag }}" }}...{{ "{{ .Tag }}" }}
