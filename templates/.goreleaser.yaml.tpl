@@ -36,7 +36,7 @@ builds:
     mod_timestamp: "{{ "{{" }} .CommitTimestamp {{ "}}" }}"
 {{- end }}
 {{- end }}
-{{- if not (module.Call "ReleaseFormatEnabled" "binary") }}
+{{- if not (module.Call "ReleaseFormatEnabled" "binaries") }}
 archives:
 - formats:
   - none
