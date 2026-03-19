@@ -33,6 +33,58 @@ arguments:
     schema:
       type: string
 
+  goos:
+    description: Supported GOOS target(s)
+    default: [linux, darwin, windows]
+    schema:
+      type: array
+      items:
+        type: string
+
+  goarch:
+    description: Supported GOARCH target(s)
+    default: [amd64, arm64]
+    schema:
+      type: array
+      items:
+        type: string
+
+  release_formats:
+    description: |-
+      Configures what release formats are available.
+
+      Valid options:
+      - binaries: Published to VCS releases offering
+      - docker: Docker image published
+    default:
+      - binaries # Disabled if library is true
+    schema:
+      type: array
+      items:
+        type: string
+        enum:
+          - binaries
+          - docker
+
+  release_targets:
+    description: |-
+      Configures where releases and other published artifacts should go.
+      This is meant to be set with a non-Github vcs.
+
+      Valid options:
+      - github: Publish to Github
+      - vcs: Publish to other vcs provider, if vcs != github
+    default:
+      - github
+      - vcs
+    schema:
+      type: array
+      items:
+        type: string
+        enum:
+          - github
+          - vcs
+
   library:
     description: |-
       Whether the project is a library or not. If set to true, the

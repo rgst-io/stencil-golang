@@ -45,13 +45,13 @@ jobs:
       {{- /* renovate: datasource=github-tags packageName=actions/cache */}}
       - uses: actions/cache@v5
         with:
-          path: {{ "${{" }} steps.go.outputs.cache_dir {{ "}}" }}
-          key: {{ "${{" }} runner.os {{ "}}" }}-go-build-cache-{{ "${{" }} hashFiles('**/go.sum') {{ "}}" }}
+          path: {{ "${{ steps.go.outputs.cache_dir }}" }}
+          key: {{ "${{ runner.os }}-go-build-cache-${{ hashFiles('**/go.sum') }}" }}
       {{- /* renovate: datasource=github-tags packageName=actions/cache */}}
       - uses: actions/cache@v5
         with:
-          path: {{ "${{" }} steps.go.outputs.mod_cache_dir {{ "}}" }}
-          key: {{ "${{" }} runner.os {{ "}}" }}-go-mod-cache-{{ "${{" }} hashFiles('go.sum') {{ "}}" }}
+          path: {{ "${{ steps.go.outputs.mod_cache_dir }}" }}
+          key: {{ "${{ runner.os }}-go-mod-cache-${{ hashFiles('go.sum') }}" }}
       - name: Download dependencies
         run: go mod download
       - name: Run go test
@@ -65,7 +65,7 @@ jobs:
         {{- /* renovate: datasource=github-tags packageName=codecov/codecov-action */}}
         uses: codecov/codecov-action@v5
         with:
-          token: {{ "${{" }} secrets.CODECOV_TOKEN {{ "}}" }}
+          token: {{ "${{ secrets.CODECOV_TOKEN }}" }}
           files: ./cover.out
           fail_ci_if_error: true
       {{- end }}

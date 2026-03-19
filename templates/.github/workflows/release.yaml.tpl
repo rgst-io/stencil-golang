@@ -84,7 +84,7 @@ jobs:
         run: |-
           echo "version=$(mise current goreleaser)" >> "$GITHUB_OUTPUT"
         id: goreleaser
-{{- if (eq (stencil.Arg "vcs") "forgejo") }}
+{{- if module.Call "ReleaseTargetEnabled" "vcs" }}
       - name: Login to GitHub Container Registry
         {{- /* renovate: datasource=github-tags packageName=docker/login-action */}}
         uses: docker/login-action@v4
@@ -93,6 +93,7 @@ jobs:
           username: {{ "${{ github.actor }}" }}
           password: {{ "${{ env.FORGEJO_PACKAGE_TOKEN }}" }}
 {{- end }}
+{{- if module.Call "ReleaseTargetEnabled" "github" }}
       - name: Login to GitHub Container Registry
         {{- /* renovate: datasource=github-tags packageName=docker/login-action */}}
         uses: docker/login-action@v4
@@ -100,6 +101,7 @@ jobs:
           registry: ghcr.io
           username: {{ "${{ github.actor }}" }}
           password: {{ eq (stencil.Arg "vcs") "forgejo" | ternary "${{ env.REAL_GITHUB_TOKEN }}" "${{ secrets.GITHUB_TOKEN }}" }}
+{{- end }}
       - name: Set up git user
         {{- /* renovate: datasource=github-tags packageName=fregante/setup-git-user */}}
         uses: fregante/setup-git-user@v2
@@ -113,8 +115,8 @@ jobs:
       - name: Get next version
         id: next_version
         env:
-          BUILD_RC: {{ "${{"}} github.event.inputs.rc {{ "}}" }}
-          VERSION_OVERRIDE: {{ "${{"}} github.event.inputs.version {{ "}}" }}
+          BUILD_RC: {{ "${{ github.event.inputs.rc }}" }}
+          VERSION_OVERRIDE: {{ "${{ github.event.inputs.version }}" }}
         run: |-
           echo "version=$(mise run next-version)" >> "$GITHUB_OUTPUT"
       - name: Create Tag
