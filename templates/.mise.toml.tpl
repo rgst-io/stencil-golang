@@ -4,7 +4,7 @@
 # renovate: datasource=github-tags depName=golang packageName=golang/go
 - golang: "1.26.1"
 # renovate: datasource=github-tags depName=golangci-lint packageName=golangci/golangci-lint
-- golangci-lint: "2.11.3"
+- golangci-lint: "2.11.4"
 - goreleaser: "latest"
 # renovate: datasource=go packageName=gotest.tools/gotestsum
 - gotestsum: "1.13.0"
